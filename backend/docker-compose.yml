@@ -38,13 +38,13 @@ services:
     container_name: frigor_db
     environment:
       - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=30qN7sx9vYRSkyKvztAj
+      - POSTGRES_PASSWORD=30qN7sx9vYRUkyKvztAj
       - POSTGRES_DATABASE=frigor
     ports:
-      - "1608:1608"
+      - "2208:2208"
     volumes:
       - db:/var/lib/postgresql/data
-    command: -p 1608
+    command: -p 2208
     networks:
       db:
         aliases:
