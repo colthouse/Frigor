@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/backend/Frigor.WebApi/Frigor.WebApi.csproj.user
+/.editorconfig.txt
+/.gitignore
+/backend/.gitignore
+/.gitignore
+/.gitignore
