@@ -1,0 +1,26 @@
+version: "3.9"
+name: frigor
+
+services:
+  frontend:
+    image: node:22-alpine
+    container_name: frigor_frontend
+    working_dir: /app
+    entrypoint: sh -c "npm ci && npm run start-docker"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frigor_frontend.rule=Host(`frigor.test`)"
+      - "traefik.http.routers.frigor_frontend.tls=true"
+      - "traefik.http.routers.frigor_frontend.entrypoints=websecure"
+      - "traefik.http.routers.frigor_frontend.tls.certresolver=resolver"
+      - "traefik.http.services.frigor_frontend.loadbalancer.server.port=80"
+    volumes:
+      - /app/node_modules
+      - ./:/app
+      - /app/.angular
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
