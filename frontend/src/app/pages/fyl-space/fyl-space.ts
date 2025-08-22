@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-fyl-space',
+  standalone  : true,
   imports: [],
   templateUrl: './fyl-space.html',
   styleUrl: './fyl-space.scss'

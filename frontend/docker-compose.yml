@@ -1,9 +1,6 @@
-version: "3.9"
-name: frigor
-
 services:
   frontend:
-    image: node:22-alpine
+    image: node:22.12.0-alpine
     container_name: frigor_frontend
     working_dir: /app
     entrypoint: sh -c "npm ci && npm run start-docker"
