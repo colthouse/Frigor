@@ -1,3 +1,4 @@
+using Frigor.DataAccess;
 using Frigor.Common.Settings;
 using MyPage.WebApi.Startup;
 
@@ -11,6 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("Settings"));
+
+builder.Services.AddDbContext<AppDbContext>();
 
 builder.BuildSwagger();
 
