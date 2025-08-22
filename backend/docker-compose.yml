@@ -1,0 +1,60 @@
+version: "3.9"
+name: frigor
+
+services:
+  backend:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: frigor_backend
+    entrypoint: bash -c "dotnet dev-certs https && dotnet watch run --project Frigor.WebApi"
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ./media:/media
+      - /app/Frigor.Common/bin
+      - /app/Frigor.Common/obj
+      - /app/Frigor.DataAccess/bin
+      - /app/Frigor.DataAccess/obj
+      - /app/Frigor.WebApi/bin
+      - /app/Frigor.WebApi/obj
+      - /app/media
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frigor_backend.rule=Host(`frigor.test`) && PathPrefix(`/api/`)"
+      - "traefik.http.routers.frigor_backend.tls=true"
+      - "traefik.http.routers.frigor_backend.entrypoints=websecure"
+      - "traefik.http.routers.frigor_backend.tls.certresolver=resolver"
+      - "traefik.http.services.frigor_backend.loadbalancer.server.port=5000"
+      - "traefik.docker.network=traefik"
+    environment:
+      DOTNET_WATCH_RESTART_ON_RUDE_EDIT: 1
+    depends_on:
+      - db
+    networks:
+      - traefik
+      - db
+
+  db:
+    image: postgres:17.6-alpine3.22
+    container_name: frigor_db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=30qN7sx9vYRSkyKvztAj
+      - POSTGRES_DATABASE=frigor
+    ports:
+      - "1608:1608"
+    volumes:
+      - db:/var/lib/postgresql/data
+    command: -p 1608
+    networks:
+      db:
+        aliases:
+          - frigor.db
+
+volumes:
+  db:
+
+networks:
+  db:
+  traefik:
+    external: true
+    name: traefik

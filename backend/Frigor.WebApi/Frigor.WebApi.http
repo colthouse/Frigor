@@ -1,6 +1,0 @@
-@Frigor.WebApi_HostAddress = http://localhost:5249
-
-GET {{Frigor.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
