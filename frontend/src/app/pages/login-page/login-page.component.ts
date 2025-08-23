@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { UserApiService } from '../../api/services/user-api.service';
+import { UserApi } from '../../api/services/user.api';
 
 @Component({
   selector: 'app-login-page',
@@ -14,10 +14,10 @@ export class LoginPageComponent {
   usernameInput = new FormControl('');
 
    alertName() {    
-    alert(this.userApi.newMethod);  
+    alert();
   }
 
-  constructor(private userApi:UserApiService) {
+  constructor(private _userApi: UserApi) {
 
   }
 
