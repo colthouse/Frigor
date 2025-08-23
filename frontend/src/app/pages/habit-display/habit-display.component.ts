@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { HabitComponent } from "../../components/habit/habit.component";
+import {Component} from '@angular/core';
 import {HabitModel} from '../../api/models/habit.model';
 
 @Component({
