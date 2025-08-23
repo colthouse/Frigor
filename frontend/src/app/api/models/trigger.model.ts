@@ -7,4 +7,5 @@ export interface TriggerModel {
     type: TriggerTypeEnum;
     occurrence: OccurrenceModel;
     cycle: CycleModel;
+    habitIds: string[];
 }

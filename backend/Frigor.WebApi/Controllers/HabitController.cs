@@ -34,4 +34,27 @@ public class HabitController(AppDbContext context): ControllerBase
         
         return Ok();
     }
+    
+    [HttpDelete("{uuid:guid}")]
+    public async Task<IActionResult> DeleteHabit(Guid uuid)
+    {
+        context.Habits.Remove(context.Habits.First(h => h.Uuid == uuid));
+        await context.SaveChangesAsync();
+        
+        return Ok();
+    }
+    
+    [HttpGet("{uuid:guid}/{achieved:bool}")]
+    public async Task<IActionResult> AchieveHabit(Guid uuid,  bool achieved)
+    {
+        var habit = await context.Habits
+            .Include(h => h.Trigger)
+            .ThenInclude(t => t.Occurrence)
+            .FirstAsync(habit => habit.Uuid == uuid);
+        
+        habit.Trigger.Occurrence.IsAchieved = achieved;
+        await context.SaveChangesAsync();
+        
+        return Ok();
+    }
 }

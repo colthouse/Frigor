@@ -35,9 +35,20 @@ export class HabitDisplayComponent implements OnInit {
   ngOnInit(): void {
     this.habitApi.getHabits(localStorage.getItem('uuid')!).subscribe(h => {
       this.habits = h
-      console.log(h);
     }
     )
   }
 
+  onDelete(uuid: string) {
+    this.habitApi.deleteHabit(uuid).subscribe(() =>
+      this.habitApi.getHabits(localStorage.getItem('uuid')!).subscribe(h => {
+          this.habits = h
+        }
+      )
+    );
+  }
+
+  onAchieved(uuid: string, checked: boolean) {
+    this.habitApi.habitAchieved(uuid, checked).subscribe(h => {})
+  }
 }

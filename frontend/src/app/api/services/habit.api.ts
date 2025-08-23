@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModel } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { UrlHelper } from '../../helpers/url.helper';
 import { HabitModel } from '../models/habit.model';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +22,11 @@ export class HabitApi {
     return this._httpClient.get<HabitModel[]>(`${this.basePath}${uuid}`)
   }
 
+  deleteHabit(uuid: string) : Observable<void> {
+    return this._httpClient.delete<void>(`${this.basePath}${uuid}`)
+  }
+
+  habitAchieved(uuid: string, checked: boolean) : Observable<object> {
+    return this._httpClient.get<object>(`${this.basePath}${uuid}/${checked}`)
+  }
 }
