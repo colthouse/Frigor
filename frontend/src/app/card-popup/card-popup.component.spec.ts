@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HabitComponent } from './habit.component';
 
-describe('HabitComponent', () => {
-  let component: HabitComponent;
-  let fixture: ComponentFixture<HabitComponent>;
+import { CardPopupComponent } from './card-popup.component';
+
+describe('CardPopupComponent', () => {
+  let component: CardPopupComponent;
+  let fixture: ComponentFixture<CardPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HabitComponent]
+      imports: [CardPopupComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HabitComponent);
+    fixture = TestBed.createComponent(CardPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

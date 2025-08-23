@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { GabiSpace } from './pages/gabi-space/gabi-space';
 import { JannisSpace } from './pages/jannis-space/jannis-space';
 import { FylSpace } from './pages/fyl-space/fyl-space';
 import { LoginPage } from './pages/login/login.page';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
 import { HabitOverviewPage } from './pages/habit-overview/habit-overview.page';
+import { HabitDisplayComponent } from './pages/habit-display/habit-display.component';
 
 export const routes: Routes = [
       {
-        path: `gabi`,
-        component: GabiSpace,
+        path: `habitDisplay`,
+        component: HabitDisplayComponent,
         pathMatch: 'full',
       },
       {
