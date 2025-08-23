@@ -32,4 +32,15 @@ public class Habit
     public string Description { get; set; }
 
     public string Name { get; set; }
+
+    public static Habit FromDto(HabitCreationDto dto)
+    {
+        var habit = new Habit(
+            dto.Name,
+            dto.Description,
+            Trigger.FromDto(dto.Trigger)
+        );
+
+        return habit;
+    }
 }

@@ -19,7 +19,7 @@ public class HabitController(AppDbContext context): ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateHabit([FromBody] HabitDto habit)
+    public async Task<IActionResult> CreateHabit([FromBody] HabitCreationDto habit)
     {
         context.Habits.Add(Habit.FromDto(habit));
         await context.SaveChangesAsync();
