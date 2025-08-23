@@ -16,10 +16,14 @@ public class HabitController(AppDbContext context): ControllerBase
     [HttpGet("{uuid:guid}")]
     public async Task<IActionResult> GetHabits(Guid uuid)
     {
-        var user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
+        var user = await context.User
+            .FirstOrDefaultAsync(u => u.Uuid == uuid);
         if (user == null) return NotFound();
         
-        var habits = await context.Habits.Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
+        var habits = await context.Habits
+            .Include(h => h.Trigger)
+            .ThenInclude(t => t.Occurrence)
+            .Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
         
         return Ok(habits);
     }

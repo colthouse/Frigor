@@ -5,22 +5,11 @@ namespace Frigor.Common.Dtos;
 
 public class TriggerDto
 {
-    private Occurrence occurrence;
-    private OccurrenceDto occurrenceDto;
-
-    public TriggerDto(Guid uuid, TriggerType type, Occurrence occurrence, List<Guid> habits)
+    public TriggerDto(Guid uuid, TriggerType type, OccurrenceDto occurrence, List<Guid> habits)
     {
         Uuid = uuid;
         Type = type;
-        this.occurrence = occurrence;
-        Habits = habits;
-    }
-
-    public TriggerDto(Guid uuid, TriggerType type, OccurrenceDto occurrenceDto, List<Guid> habits)
-    {
-        Uuid = uuid;
-        Type = type;
-        this.occurrenceDto = occurrenceDto;
+        Occurrence = occurrence;
         Habits = habits;
     }
 
@@ -28,4 +17,5 @@ public class TriggerDto
     public TriggerType Type { get; set; }
     public OccurrenceDto Occurrence { get; set; } = null!;
     public List<Guid> Habits { get; set; } = new();
+    public CycleDto Cycle { get; set; }
 }
