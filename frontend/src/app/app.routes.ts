@@ -3,13 +3,12 @@ import { JannisSpace } from './pages/jannis-space/jannis-space';
 import { FylSpace } from './pages/fyl-space/fyl-space';
 import { LoginPage } from './pages/login/login.page';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
-import { HabitOverviewPage } from './pages/habit-overview/habit-overview.page';
 import { HabitDisplayComponent } from './pages/habit-display/habit-display.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 export const routes: Routes = [
       {
-        path: `habitDisplay`,
+        path: `habit-display`,
         component: HabitDisplayComponent,
         pathMatch: 'full',
       },
@@ -34,12 +33,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'habit-overview',
-        component: HabitOverviewPage,
-        pathMatch: 'full',
-      },
-      {
-      path: 'welcome',
+        path: 'welcome',
         component: WelcomeComponent,
         pathMatch: 'full',
       }
