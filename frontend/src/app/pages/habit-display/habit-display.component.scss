@@ -14,7 +14,6 @@ body {
 .custom-list {
   max-width: 400px;
   margin: 20px auto;
-  background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   padding: 0;
@@ -39,13 +38,4 @@ body {
 .item-text {
   font-size: 1rem;
   font-weight: 500;
-  color: #333;
-}
-
-.menu-button {
-  color: #666;
-}
-
-.menu-button:hover {
-  color: #000;
 }

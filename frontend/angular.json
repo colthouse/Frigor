@@ -33,7 +33,10 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles/style.scss",
+              "src/styles/theme.scss",
+              "src/styles/dark-variables.scss",
+              "src/styles/m3-theme.scss"
             ],
             "scripts": []
           },
@@ -93,7 +96,10 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles/style.scss",
+              "src/styles/theme.scss",
+              "src/styles/dark-variables.scss",
+              "src/styles/m3-theme.scss"
             ],
             "scripts": []
           }
