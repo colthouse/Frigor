@@ -16,6 +16,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { UserApi } from '../../api/services/user.api';
 import { UserModel } from '../../api/models/user.model';
 import {MatSelectModule} from '@angular/material/select';
+import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -38,19 +39,25 @@ import {MatSelectModule} from '@angular/material/select';
   standalone: true
 })
 export class CreateHabitPage implements OnInit{
-  
-  constructor (private userapi:UserApi) {  }
-
-  ngOnInit(): void {
-    this.userapi.getAll().subscribe(u=>this.userList=u)
-  }
   protected userList: UserModel[]=[]
 
-  myForm = new FormGroup({
+  protected habitForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
-    date: new FormControl('')
+    startDate: new FormControl(new Date()),
+    endDate: new FormControl(new Date()),
+    triggerType: new FormControl(TriggerTypeEnum.Habit),
   });
+
+  constructor (private userApi: UserApi) {  }
+
+  ngOnInit(): void {
+    this.userApi.getAll().subscribe(u=>
+      this.userList = u
+    );
+
+    this.habitForm.valueChanges.subscribe(change => {console.log(change);});
+  }
 
   private _snackBar = inject(MatSnackBar);
 
@@ -74,7 +81,8 @@ export class CreateHabitPage implements OnInit{
   openUserList(){
 
   }
-  
+
+  protected readonly TriggerTypeEnum = TriggerTypeEnum;
 }
 
 

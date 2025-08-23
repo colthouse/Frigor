@@ -19,18 +19,15 @@ export class LoginPage {
   constructor(private _userApi: UserApi) {}
 
   submit() {
-    console.log("asfd")
     let username: string | null = this.usernameInput.value;
-
-    if (username == null) return;
-    console.log("asdd")
+    if (username == null || username === "") return;
 
     this._userApi.loadOrCreate(username).subscribe(
-      value => console.log('User UUID is.' + value)
+      value => console.log('User UUID is.' + value.uuid)
     );
   }
 
   saveUuid(id:number) {
-    
+
   }
 }
