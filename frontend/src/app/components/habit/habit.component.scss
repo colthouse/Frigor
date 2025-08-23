@@ -2,10 +2,15 @@
 
 .habit-box{
     background-color: gray;
-    height: auto;
-    width: 100px;
+    width: 250px;
     border-radius: 5px;
+    margin: 4px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
 }
 button{
-    align-self: flex-end;
+    margin: 3px;
+    height:auto;
+    width:auto;
 }

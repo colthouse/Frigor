@@ -1,11 +1,12 @@
 <div class="habit-box">
-    <button matMiniFab aria-label="Example icon button with a menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <mat-checkbox class="habit">{{habitName}}</mat-checkbox>
-    <div class="description-holder">
-        <p class="habit-description">{{habitDescription}}</p>
+    <div class="habit-holder">
+        <button matMiniFab aria-label="Edit">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-checkbox class="habit">{{habitName}}</mat-checkbox>
     </div>
-    
+    <div>
+        <p>{{habitDescription}}</p>
+    </div>
 </div>
 
