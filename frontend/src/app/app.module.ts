@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule, provideZoneChangeDetection} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';  // Needed for browser apps
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Needed for Angular Material animations
-import { RouterModule } from '@angular/router';
+import {provideRouter, RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
@@ -20,6 +20,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import {routes} from './app.routes';
 import {HabitComponent} from './components/habit/habit.component';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {provideHttpClient} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import {HabitComponent} from './components/habit/habit.component';
     MatButtonModule,
     MatButtonToggleModule,
   ],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
