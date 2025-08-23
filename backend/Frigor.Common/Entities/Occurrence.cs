@@ -16,6 +16,8 @@ public class Occurrence
             IsAchieved = dtoTriggerOccurrence.IsAchieved,
         };
     }
+    
+    public Guid Uuid { get; set; }
 
     public bool IsAchieved { get; set; }
 

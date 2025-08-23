@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Frigor.DataAccess.Configuration;
 
-public class TriggerConfiguration: IEntityTypeConfiguration<Trigger>
+public class OccurenceConfiguration : IEntityTypeConfiguration<Occurrence>
 {
-    public void Configure(EntityTypeBuilder<Trigger> builder)
+    public void Configure(EntityTypeBuilder<Occurrence> builder)
     {
-        builder.HasKey(e => e.Uuid);
+        builder.HasKey(h => h.Uuid);
     }
 }

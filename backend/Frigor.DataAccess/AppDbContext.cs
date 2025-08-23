@@ -11,6 +11,8 @@ public class AppDbContext(IOptions<AppSettings> options) : DbContext
 {
     public DbSet<Habit> Habits { get; set; } = null!;
     public DbSet<User> User { get; set; } = null!;
+    public DbSet<Occurrence> Occurrence { get; set; } = null!;
+    public DbSet<Trigger> Trigger { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,5 +25,8 @@ public class AppDbContext(IOptions<AppSettings> options) : DbContext
     {
         modelBuilder.ApplyConfiguration(new HabitConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new OccurenceConfiguration());
+        modelBuilder.ApplyConfiguration(new TriggerConfiguration());
+        
     }
 }
