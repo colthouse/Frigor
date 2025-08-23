@@ -54,20 +54,20 @@
         <p>Select days for your new habit</p>
 
         <mat-button-toggle-group multiple="">
-            <mat-button-toggle value="1">Mon</mat-button-toggle>
-            <mat-button-toggle value="2">Tue</mat-button-toggle>
-            <mat-button-toggle value="3">Wed</mat-button-toggle>
+            <mat-button-toggle value="0">Mon</mat-button-toggle>
+            <mat-button-toggle value="1">Tue</mat-button-toggle>
+            <mat-button-toggle value="2">Wed</mat-button-toggle>
             <mat-button-toggle value="3">Thu</mat-button-toggle>
-            <mat-button-toggle value="3">Fri</mat-button-toggle>
-            <mat-button-toggle value="3">Sat</mat-button-toggle>
-            <mat-button-toggle value="3">Sun</mat-button-toggle>
+            <mat-button-toggle value="4">Fri</mat-button-toggle>
+            <mat-button-toggle value="5">Sat</mat-button-toggle>
+            <mat-button-toggle value="6">Sun</mat-button-toggle>
         </mat-button-toggle-group>
         
         <mat-form-field>
             <mat-label>God parent</mat-label>
                 <mat-select>
                     @for (user of userList; track user) {
-                    <mat-option [value]="user.uuid">{{user.uuid}}</mat-option>
+                    <mat-option [value]="user.uuid">{{user.name}}</mat-option>
                     }
                 </mat-select>
         </mat-form-field>
