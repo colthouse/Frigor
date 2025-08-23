@@ -13,6 +13,13 @@ public class Habit
         Trigger = trigger;
     }
 
+    private Habit(string name, string description, Trigger trigger)
+    {
+        Name = name;
+        Description = description;
+        Trigger = trigger;
+    }
+
     public Guid Uuid { get; set; }
 
     public static Habit FromDto(HabitDto dto)
