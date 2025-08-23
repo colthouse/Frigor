@@ -19,8 +19,6 @@ public class UserController(AppDbContext context) : ControllerBase
     [HttpGet("{uuid}")]
     public async Task<IActionResult> GetUser(Guid uuid)
     {
-        Console.WriteLine(uuid);
-
         User? user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
 
         if (user == null)
