@@ -15,8 +15,9 @@ public class User
     public Guid Uuid { get; set; }
     public string Name { get; set; } = null!;
     public int Habit { get; set; }
-
-    public UserDto toDto()
+    public List<Guid> Responsibilities { get; set; } = [];
+    
+    public UserDto ToDto()
     {
         return new UserDto(Uuid, Name);
     }
