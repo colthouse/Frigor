@@ -17,7 +17,7 @@ import { UserApi } from '../../api/services/user.api';
 import { UserModel } from '../../api/models/user.model';
 import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
-import { HabitModel } from '../../api/models/habit.model';
+import { HabitApi } from '../../api/services/habit.api';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -52,7 +52,7 @@ export class CreateHabitPage implements OnInit{
     weekdays: new FormControl([]),
   });
 
-  constructor (private userApi: UserApi) {  }
+  constructor (private userApi: UserApi, private _habitApi: HabitApi) {}
 
   ngOnInit(): void {
     this.userApi.getAll().subscribe(u=>
@@ -102,7 +102,12 @@ export class CreateHabitPage implements OnInit{
           Weekdays: this.habitForm.value.weekdays!
         }}
       }
+      this._habitApi.createHabit(habit).subscribe(
+        value => console.log(value as HabitModel)
+      )
     }
+
+
   protected readonly TriggerTypeEnum = TriggerTypeEnum;
 }
 

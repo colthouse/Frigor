@@ -9,19 +9,16 @@ import { FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class HabitApiService {
+export class HabitApi {
   public basePath: string;
 
   constructor(private _httpClient: HttpClient) {
     this.basePath = UrlHelper.getApiBase() + 'habit/';
   }
 
-  createHabit(habit: FormGroup): Observable<HabitModel> {
-    return this._httpClient.post<HabitModel>(this.basePath, {})
+  createHabit(habit: HabitModel): Observable<HabitModel> {
+    return this._httpClient.post<HabitModel>(this.basePath, habit)
   }
 
-  getAll(): Observable<UserModel[]>{
-    return this._httpClient.get<UserModel[]>(this.basePath + "all", {})
-  }
 
 }
