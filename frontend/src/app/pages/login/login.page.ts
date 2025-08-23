@@ -23,11 +23,12 @@ export class LoginPage {
     if (username == null || username === "") return;
 
     this._userApi.loadOrCreate(username).subscribe(
-      value => console.log('User UUID is.' + value.uuid)
+      value => this.saveUuid(value.uuid)
     );
   }
 
-  saveUuid(id:number) {
-
+  saveUuid(id:string) {
+    localStorage.setItem('uuid', id);
+    console.log(localStorage.getItem('uuid'));
   }
 }
