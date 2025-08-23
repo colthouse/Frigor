@@ -94,26 +94,26 @@ export class CreateHabitPage implements OnInit {
 
   onsubmit() {
     let habit: HabitModel = {
-      Name: this.habitForm.value.name!,
-      Uuid: '',
-      Description: this.habitForm.value.description!,
-      Trigger: {
-        Uuid: '',
-        Type: this.habitForm.value.triggerType!,
-        Occurrence: {
-          Date: this.habitForm.value.startDate!,
-          IsAchieved: false
+      name: this.habitForm.value.name!,
+      uuid: '',
+      description: this.habitForm.value.description!,
+      trigger: {
+        uuid: '',
+        type: this.habitForm.value.triggerType!,
+        occurrence: {
+          date: this.habitForm.value.startDate!,
+          isAchieved: false
         },
-        Cycle: {
-          StartDate: this.habitForm.value.startDate!,
-          EndDate: this.habitForm.value.endDate!,
-          Weekdays: this.habitForm.value.weekdays!
+        cycle: {
+          startDate: this.habitForm.value.startDate!,
+          endDate: this.habitForm.value.endDate!,
+          weekdays: this.habitForm.value.weekdays!
         }
-        
+
       }
 
     }
-          this.habitApi.createHabit(habit).subscribe(
+          this.habitApi.createHabit("27cc9229-6039-43b6-a601-8612c31833d5", habit).subscribe(
         value => console.log(value)
       )
 

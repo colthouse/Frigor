@@ -1,8 +1,8 @@
 import { TriggerModel } from "./trigger.model";
 
 export interface HabitModel {
-    Uuid: string;
-    Name: string
-    Description: string;
-    Trigger: TriggerModel;
+    uuid: string;
+    name: string
+    description: string;
+    trigger: TriggerModel;
 }

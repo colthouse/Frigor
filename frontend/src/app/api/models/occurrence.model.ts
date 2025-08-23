@@ -1,4 +1,4 @@
 export interface OccurrenceModel {
-  Date: Date;
-  IsAchieved: boolean;
+  date: Date;
+  isAchieved: boolean;
 }
