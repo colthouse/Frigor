@@ -1,5 +1,6 @@
 <div class="background">
-  <h1>Habit creation</h1>
+  <mat-card>
+    <h1>Habit creation</h1>
     <form [formGroup]="habitForm">
       <div class="width inputs">
         <mat-form-field class="width">
@@ -83,8 +84,10 @@
         </mat-form-field>
       </ng-template>
 
-    <button (click)="onsubmit()" id="create_button" mat-stroked-button>
-      Create habit
-    </button>
-  </form>
+      <button (click)="onsubmit()" id="create_button" mat-stroked-button>
+        Create habit
+      </button>
+    </form>
+  </mat-card>
+  
 </div>

@@ -41,3 +41,7 @@ button.mat-primary:not(:disabled) {
     color: black !important;
   }
 }
+
+mat-card {
+  background-color: var(--mat-card-background) !important;
+}

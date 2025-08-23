@@ -1,4 +1,10 @@
 .background {
+  display: flex;
+  justify-content: center;
+  mat-card{
+    max-width: 50%;
+    align-self: center;
+  }
   padding: 20px;
 
     form {
@@ -28,5 +34,8 @@
       .week-chooser {
         margin-bottom: 40px;
       }
+    }
+    h1 {
+      margin: 20px;
     }
 }
