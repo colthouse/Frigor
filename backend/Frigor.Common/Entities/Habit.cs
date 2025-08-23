@@ -34,8 +34,13 @@ public class Habit
              dto.Description,
             Trigger.FromDto(dto.Trigger)
         );
-
+        
         return habit;
+    }
+
+    public HabitDto ToDto()
+    {
+        return new HabitDto(Uuid,Name,Description,Trigger.ToDto());
     }
 
     public Trigger Trigger { get; set; }

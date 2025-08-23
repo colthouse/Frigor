@@ -2,6 +2,7 @@ using Frigor.Common.Dtos;
 using Frigor.Common.Entities;
 using Frigor.DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Frigor.WebApi.Controllers;
 
@@ -13,9 +14,18 @@ public class HabitController(AppDbContext context): ControllerBase
     /// <return>Habits</return>
     /// <response code="200">Successful</response>
     [HttpGet()]
-    public async Task<IActionResult> GetHabits()
+    public async Task<IActionResult> GetHabits(Guid Uuid)
     {
-        return Ok();
+        List<HabitDto> habitDtos = new List<HabitDto>();
+        var habits = await context.Habits.Where(habits => habits.Uuid == Uuid).ToListAsync();
+        foreach(var habit in habits)
+        {
+            if (habit != null)
+            {
+                habitDtos.Add(habit.ToDto());
+            }
+        }
+        return Ok(habitDtos);
     }
 
     [HttpPost]

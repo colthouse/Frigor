@@ -39,4 +39,8 @@ public class Trigger
     {
         return new Trigger(dtoTrigger.Type, Occurrence.FromDto(dtoTrigger.Occurrence), dtoTrigger.Habits);
     }
+    public TriggerDto ToDto()
+    {
+        return new TriggerDto (Uuid, Type, Occurrence.ToDto(), Habits);
+    }
 }
