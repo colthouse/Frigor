@@ -25,6 +25,8 @@ import { LoginPage } from './pages/login/login.page';
 import { MatIconModule } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
+import {MenuComponent} from './components/menu/menu.component';
+import {ComponentsModule} from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { provideHttpClient } from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatIconModule
+    MatIconModule,
+    ComponentsModule
 ],
   bootstrap: [AppComponent],
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient()]

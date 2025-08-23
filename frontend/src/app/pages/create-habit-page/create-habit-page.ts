@@ -1,22 +1,23 @@
-import { Component, signal, inject, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatRadioModule } from '@angular/material/radio';
-import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {Component, inject, OnInit} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButton } from "@angular/material/button";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {ChangeDetectionStrategy} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { UserApi } from '../../api/services/user.api';
-import { UserModel } from '../../api/models/user.model';
+import {UserApi} from '../../api/services/user.api';
+import {UserModel} from '../../api/models/user.model';
 import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
+import {HabitModel} from '../../api/models/habit.model';
+import {NgIf} from '@angular/common';
+import {ComponentsModule} from '../../components/components.module';
 import { HabitApi } from '../../api/services/habit.api';
 
 @Component({
@@ -32,15 +33,17 @@ import { HabitApi } from '../../api/services/habit.api';
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatSelectModule
-],
+    MatSelectModule,
+    NgIf,
+    ComponentsModule
+  ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
   styleUrl: './create-habit-page.scss',
   standalone: true
 })
-export class CreateHabitPage implements OnInit{
-  protected userList: UserModel[]=[]
+export class CreateHabitPage implements OnInit {
+  protected userList: UserModel[] = []
 
   protected habitForm = new FormGroup({
     name: new FormControl(''),
@@ -51,41 +54,46 @@ export class CreateHabitPage implements OnInit{
     godFather: new FormControl(''),
     weekdays: new FormControl([]),
   });
+  protected readonly TriggerTypeEnum = TriggerTypeEnum;
+  private _snackBar = inject(MatSnackBar);
 
-  constructor (private userApi: UserApi, private _habitApi: HabitApi) {}
+  protected get triggerIsCycle(): boolean {
+    return this.habitForm.value.triggerType == TriggerTypeEnum.Cycle
+  }
+
+  constructor(private userApi: UserApi, private habitApi: HabitApi) {
+  }
 
   ngOnInit(): void {
-    this.userApi.getAll().subscribe(u=>
+    this.userApi.getAll().subscribe(u =>
       this.userList = u
     );
 
   }
 
-  private _snackBar = inject(MatSnackBar);
-
   displayDateTriggerInfo(): void {
     this._snackBar.open("Set a Date when your habit will be triggered. This should be the date on which you want to do it.",
       'Close',
-    {
-      duration: 10000, // 👈 10s = 10000 ms
-    }
+      {
+        duration: 10000, // 👈 10s = 10000 ms
+      }
     );
   }
 
   displayHabitStackInfo(): void {
     this._snackBar.open("Set this habit to trigger once you've completed another habit. This process is called habit stacking.",
       'Close',
-    {
-      duration: 10000, // 👈 10s = 10000 ms
-    });
+      {
+        duration: 10000, // 👈 10s = 10000 ms
+      });
   }
 
-  openUserList(){
+  openUserList() {
 
   }
 
-  onsubmit(){
-    let habit: HabitModel={
+  onsubmit() {
+    let habit: HabitModel = {
       Name: this.habitForm.value.name!,
       Uuid: '',
       Description: this.habitForm.value.description!,
@@ -100,18 +108,19 @@ export class CreateHabitPage implements OnInit{
           StartDate: this.habitForm.value.startDate!,
           EndDate: this.habitForm.value.endDate!,
           Weekdays: this.habitForm.value.weekdays!
-        }}
+        }
+        
       }
-      this._habitApi.createHabit(habit).subscribe(
-        value => console.log(value as HabitModel)
-      )
+
     }
+          this.habitApi.createHabit(habit).subscribe(
+        value => console.log(value)
+      )
 
-
-  protected readonly TriggerTypeEnum = TriggerTypeEnum;
+  }
 }
 
-  
+
 
 
 

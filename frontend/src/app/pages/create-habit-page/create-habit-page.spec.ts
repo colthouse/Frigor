@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateHabitPage } from './create-habit-page';
+import {CreateHabitPage} from './create-habit-page';
 
 describe('CreateHabitPage', () => {
   let component: CreateHabitPage;
@@ -10,7 +10,7 @@ describe('CreateHabitPage', () => {
     await TestBed.configureTestingModule({
       imports: [CreateHabitPage]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CreateHabitPage);
     component = fixture.componentInstance;
