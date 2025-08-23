@@ -31,7 +31,7 @@ public class UserController(AppDbContext context) : ControllerBase
     }
 
     /// <summary>
-    /// Create User with name
+    /// Create or get User with name
     /// </summary>
     /// <param name="name">Name of the User to create</param>
     /// <returns><see cref="UserDto"/></returns>
@@ -71,6 +71,19 @@ public class UserController(AppDbContext context) : ControllerBase
         }
 
         var users = await context.User.Where(u => user.Responsibilities.Contains(u.Uuid)).ToListAsync();
+        return Ok(users);
+    }
+
+    /// <summary>
+    /// Gets all users expect oneself
+    /// </summary>
+    /// <param name="uuid"></param>
+    /// <returns></returns>
+    [HttpGet("users/{uuid:guid}")]
+    public async Task<IActionResult> GetUsers(Guid uuid)
+    {
+        var users = await context.User.Where(u => u.Uuid != uuid).ToListAsync();
+
         return Ok(users);
     }
 }
