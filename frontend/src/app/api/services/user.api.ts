@@ -19,6 +19,6 @@ export class UserApi {
   }
 
   getAll(): Observable<UserModel[]>{
-    return this._httpClient.get<UserModel[]>(this.basePath + "/all", {})
+    return this._httpClient.get<UserModel[]>(this.basePath + "all", {})
   }
 }
