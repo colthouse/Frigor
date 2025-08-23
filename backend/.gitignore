@@ -2,4 +2,5 @@
 .cache/
 obj/
 bin/
+.idea
 Frigor.sln.DotSettings.user/
