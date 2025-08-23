@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HabitDisplayComponent } from './habit-display.component';
+import { HabitComponent } from "../../components/habit/habit.component";
 
 describe('HabitDisplayComponent', () => {
   let component: HabitDisplayComponent;

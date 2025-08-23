@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { HabitComponent } from "../../components/habit/habit.component";
 
 @Component({
   selector: 'app-habit-display',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './habit-display.component.html',
   styleUrl: './habit-display.component.scss'
 })
