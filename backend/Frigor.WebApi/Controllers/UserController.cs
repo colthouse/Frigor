@@ -1,3 +1,4 @@
+using Frigor.Common.Entities;
 using Frigor.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ public class UserController : ControllerBase
     /// Get user with id
     /// </summary>
     /// <param name="id">Id of the user</param>
-    /// <returns></returns>
+    /// <returns><see cref="IActionResult"/></returns>
     /// <response code="200">Successful</response>
     /// <response code="400">User with specified Id was not found</response>
     [HttpGet("{id:int}")]
@@ -31,16 +32,28 @@ public class UserController : ControllerBase
             return NotFound();
         }
         
-        return Ok(user);
+        return Ok(user.toDto());
     }
 
-    [HttpPost("{id:int}{name}")]
-    public async Task<IActionResult> PostUser(int id, string name)
+    /// <summary>
+    /// Create User with name
+    /// </summary>
+    /// <param name="name">Name of the User to create</param>
+    /// <returns><see cref="IActionResult"/></returns>
+    /// <response code="200">User created</response>
+    /// <response code="403">User with name already exists</response>
+    [HttpPost("{name}")]
+    public async Task<IActionResult> CreateUser(string name)
     {
-
-        var user = await _context.User.FirstOrDefaultAsync(u => u.Id == id);
-        if (user == null)
+        var user = await _context.User.FirstOrDefaultAsync(u => u.Name == name);
+        if (user != null)
+        {
+            return Forbid();
+        }
         
-        return Created();
+        var createdUser = _context.User.Add(new User(name));
+        await _context.SaveChangesAsync();
+        
+        return Ok(createdUser.Entity.Id);
     }
 }
