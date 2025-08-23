@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlHelper } from '../../helpers/url.helper';
 import { HabitModel } from '../models/habit.model';
+import {HabitCreationModel} from '../models/habit-creation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class HabitApi {
     this.basePath = UrlHelper.getApiBase() + 'habit/';
   }
 
-  createHabit(uuid: string, habit: HabitModel): Observable<HabitModel> {
+  createHabit(uuid: string, habit: HabitCreationModel): Observable<HabitModel> {
     return this._httpClient.post<HabitModel>(this.basePath+uuid, habit)
   }
 

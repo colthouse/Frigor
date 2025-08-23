@@ -18,8 +18,12 @@ import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
 import {HabitModel} from '../../api/models/habit.model';
 import {NgIf} from '@angular/common';
 import {HabitApi} from '../../api/services/habit.api';
-import {MenuComponent} from '../../components/menu/menu.component';
 import {Router} from '@angular/router';
+import {TriggerModel} from '../../api/models/trigger.model';
+import {CycleTriggerModel} from '../../api/models/cycle-trigger.model';
+import {HabitTriggerModel} from '../../api/models/habit-trigger.model';
+import {HabitCreationModel} from '../../api/models/habit-creation.model';
+import {HabitTriggerCreationModel} from '../../api/models/habit-trigger-creation.model';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -36,7 +40,7 @@ import {Router} from '@angular/router';
     MatIconModule,
     MatSelectModule,
     NgIf,
-    MenuComponent,
+
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
@@ -101,24 +105,30 @@ displayHabitStackInfo(): void {
       return
     }
 
-    let habit: HabitModel = {
-      name: this.habitForm.value.name!,
+    let trigger: TriggerModel;
+    if (this.habitForm.value.triggerType == TriggerTypeEnum.Cycle) {
+      trigger = {
+        type: TriggerTypeEnum.Cycle,
+        startDate: this.habitForm.value.startDate,
+        endDate: this.habitForm.value.endDate,
+        daysOfWeek: this.habitForm.value.weekdays
+      } as unknown as CycleTriggerModel
+    }else {
+      trigger = {
+        type: TriggerTypeEnum.Habit,
+        habit: this.habitForm.value.habits
+      } as unknown as HabitTriggerCreationModel
+    }
+
+    let habit: HabitCreationModel = {
       uuid: '',
+      name: this.habitForm.value.name!,
       description: this.habitForm.value.description!,
-      trigger: {
-        uuid: '',
-        habits: this.habitForm.value.habits!,
-        type: this.habitForm.value.triggerType!,
-        occurrence: {
-          date: this.habitForm.value.startDate!,
-          isAchieved: false
-        },
-        cycle: {
-          startDate: this.habitForm.value.startDate!,
-          endDate: this.habitForm.value.endDate!,
-          weekdays: this.habitForm.value.weekdays!
-        },
-      }
+      godParent: this.habitForm.value.godFather!,
+      owner: localStorage.getItem('uuid')!,
+      trigger: trigger,
+      occurrences: [],
+      habitTriggers: [],
     }
 
     this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(() =>
