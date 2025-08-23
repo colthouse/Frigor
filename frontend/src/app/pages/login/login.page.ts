@@ -6,6 +6,7 @@ import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import { UserHelper } from '../../helpers/user.helper';
 
 @Component({
   selector: 'login-page',
@@ -25,7 +26,7 @@ export class LoginPage {
   usernameInput = new FormControl('');
 
 
-  constructor(private _userApi: UserApi, private router: Router) {}
+  constructor(private _userApi: UserApi, private _userHelper: UserHelper, private router: Router) {}
 
   submit() {
     let username: string | null = this.usernameInput.value;
@@ -33,15 +34,10 @@ export class LoginPage {
 
     this._userApi.loadOrCreate(username).subscribe({
         next: (value) => {
-          this.saveUuid(value.uuid);
+          this._userHelper.SaveUuid(value.uuid);
           this.router.navigate(['/habit-display']);
         }
       }
       )
-  }
-
-  saveUuid(id:string) {
-    localStorage.setItem('uuid', id);
-
   }
 }

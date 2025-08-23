@@ -2,31 +2,46 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlHelper } from '../../helpers/url.helper';
+import { UserHelper } from '../../helpers/user.helper';
 import { HabitModel } from '../models/habit.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HabitApi {
+
   public basePath: string;
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient, private _userHelper: UserHelper) {
     this.basePath = UrlHelper.getApiBase() + 'habit/';
   }
 
-  createHabit(uuid: string, habit: HabitModel): Observable<HabitModel> {
+  createHabit(habit: HabitModel): Observable<HabitModel> {
+    let uuid = this.getUuid();
     return this._httpClient.post<HabitModel>(this.basePath+uuid, habit)
   }
 
-  getHabits(uuid: string): Observable<HabitModel[]> {
+  getHabits(): Observable<HabitModel[]> {
+    let uuid = this.getUuid();
     return this._httpClient.get<HabitModel[]>(`${this.basePath}${uuid}`)
   }
 
-  deleteHabit(uuid: string) : Observable<void> {
+  getGodparentHabits() : Observable<HabitModel[]> {
+    let uuid = this.getUuid();
+    return this._httpClient.get<HabitModel[]>(`${this.basePath}/godparent/${uuid}`)
+  }
+
+  deleteHabit() : Observable<void> {
+    let uuid = this.getUuid();
     return this._httpClient.delete<void>(`${this.basePath}${uuid}`)
   }
 
-  habitAchieved(uuid: string, checked: boolean) : Observable<object> {
+  habitAchieved(checked: boolean) : Observable<object> {
+    let uuid = this.getUuid();
     return this._httpClient.get<object>(`${this.basePath}${uuid}/${checked}`)
+  }
+
+  private getUuid(): string{
+    return this._userHelper.GetUuid()
   }
 }
