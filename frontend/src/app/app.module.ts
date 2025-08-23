@@ -31,7 +31,7 @@ import { provideHttpClient } from '@angular/common/http';
     AppComponent,
     HabitComponent,
     HabitDisplayComponent,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,

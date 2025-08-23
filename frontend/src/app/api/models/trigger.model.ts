@@ -5,4 +5,5 @@ export interface TriggerModel {
     Uuid: string;
     Type: TriggerTypeEnum;
     Occurrence: OccurrenceModel;
+
 }

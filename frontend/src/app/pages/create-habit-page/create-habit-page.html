@@ -52,13 +52,13 @@
         <p>Select days for your new habit</p>
 
         <mat-button-toggle-group [formControlName]="'weekdays'" multiple="">
-            <mat-button-toggle value="0">Mon</mat-button-toggle>
-            <mat-button-toggle value="1">Tue</mat-button-toggle>
-            <mat-button-toggle value="2">Wed</mat-button-toggle>
-            <mat-button-toggle value="3">Thu</mat-button-toggle>
-            <mat-button-toggle value="4">Fri</mat-button-toggle>
-            <mat-button-toggle value="5">Sat</mat-button-toggle>
-            <mat-button-toggle value="6">Sun</mat-button-toggle>
+            <mat-button-toggle [value]="1">Mon</mat-button-toggle>
+            <mat-button-toggle [value]="2">Tue</mat-button-toggle>
+            <mat-button-toggle [value]="3">Wed</mat-button-toggle>
+            <mat-button-toggle [value]="4">Thu</mat-button-toggle>
+            <mat-button-toggle [value]="5">Fri</mat-button-toggle>
+            <mat-button-toggle [value]="6">Sat</mat-button-toggle>
+            <mat-button-toggle [value]="0">Sun</mat-button-toggle>
         </mat-button-toggle-group>
 
         <mat-form-field>
