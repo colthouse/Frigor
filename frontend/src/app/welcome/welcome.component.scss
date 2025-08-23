@@ -1,4 +1,35 @@
 mat-card {
-    background: white;
     margin: 50px 50px 50px 50px;
+}
+
+mat-icon{
+    margin: 0 auto;
+    align-self: center;
+    display:flex;
+    font-size: 70px;
+    height: 70px;
+    width: 70px;
+}
+
+p{
+    font-size: 30px;
+    padding: 20px;
+}
+
+h1{
+    padding: 20px;
+    text-align: center;
+}
+
+.h2_center {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    padding: 20px;
+}
+
+h3 {
+    padding: 20px;
 }
