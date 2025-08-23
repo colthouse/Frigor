@@ -7,4 +7,5 @@ public class TriggerCreationDto
     public TriggerType Type { get; set; }
     public OccurrenceDto Occurrence { get; set; } = null!;
     public List<Guid> Habits { get; set; } = new();
+    public CycleDto Cycle { get; set; }
 }
