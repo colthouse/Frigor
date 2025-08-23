@@ -79,7 +79,7 @@ public class UserController(AppDbContext context) : ControllerBase
     /// </summary>
     /// <param name="uuid"></param>
     /// <returns></returns>
-    [HttpGet("users/{uuid:guid}")]
+    [HttpGet("all/{uuid:guid}")]
     public async Task<IActionResult> GetUsers(Guid uuid)
     {
         var users = await context.User.Where(u => u.Uuid != uuid).ToListAsync();
