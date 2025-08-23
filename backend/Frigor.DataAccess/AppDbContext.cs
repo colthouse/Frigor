@@ -16,8 +16,8 @@ public class AppDbContext : DbContext
         _options = options;
     }
 
-    public DbSet<Habit> Habits { get; private set; } = null!;
-    public DbSet<User> User { get; private set; } = null!;
+    public DbSet<Habit> Habits { get; set; }
+    public DbSet<User> User { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
