@@ -9,5 +9,5 @@ import { HabitComponent } from "../../components/habit/habit.component";
   styleUrl: './gabi-space.scss'
 })
 export class GabiSpace {
-
+  
 }
