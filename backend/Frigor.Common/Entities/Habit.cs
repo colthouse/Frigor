@@ -2,5 +2,5 @@ namespace Frigor.Common.Entities;
 
 public class Habit
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 }

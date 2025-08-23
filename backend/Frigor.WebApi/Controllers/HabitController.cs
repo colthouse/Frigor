@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Frigor.WebApi.Controllers;
+namespace Frigor.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
