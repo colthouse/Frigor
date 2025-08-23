@@ -62,6 +62,15 @@
             <mat-button-toggle value="3">Sat</mat-button-toggle>
             <mat-button-toggle value="3">Sun</mat-button-toggle>
         </mat-button-toggle-group>
+        
+        <mat-form-field>
+            <mat-label>God parent</mat-label>
+                <mat-select>
+                    @for (user of userList; track user) {
+                    <mat-option [value]="user.uuid">{{user.uuid}}</mat-option>
+                    }
+                </mat-select>
+        </mat-form-field>
 
         <button id="create_button" matButton>
             Create habit
