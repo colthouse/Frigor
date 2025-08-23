@@ -46,7 +46,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule
-    MatIcon
 ],
   bootstrap: [AppComponent]
 })
