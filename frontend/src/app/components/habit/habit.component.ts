@@ -9,5 +9,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class HabitComponent {
   @Input()
-  placeholder: string | undefined;
+  habitName: string | undefined;
+  habitDescription: string | undefined;
 }
