@@ -13,25 +13,23 @@ public class HabitController(AppDbContext context): ControllerBase
     /// <summary>Get Habits</summary>
     /// <return>Habits</return>
     /// <response code="200">Successful</response>
-    [HttpGet()]
-    public async Task<IActionResult> GetHabits(Guid Uuid)
+    [HttpGet("{uuid:guid}")]
+    public async Task<IActionResult> GetHabits(Guid uuid)
     {
-        List<HabitDto> habitDtos = new List<HabitDto>();
-        var habits = await context.Habits.Where(habits => habits.Uuid == Uuid).ToListAsync();
-        foreach(var habit in habits)
-        {
-            if (habit != null)
-            {
-                habitDtos.Add(habit.ToDto());
-            }
-        }
-        return Ok(habitDtos);
+        var user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
+        if (user == null) return NotFound();
+        
+        var habits = await context.Habits.Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
+        
+        return Ok(habits);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateHabit([FromBody] HabitCreationDto habit)
+    [HttpPost("{uuid:guid}")]
+    public async Task<IActionResult> CreateHabit(Guid uuid, [FromBody] HabitCreationDto habit)
     {
-        context.Habits.Add(Habit.FromDto(habit));
+        var createdHabit = context.Habits.Add(Habit.FromDto(habit));
+        var user = context.User.FirstOrDefault(u => u.Uuid == uuid);
+        user.Habits.Add(createdHabit.Entity.Uuid);
         await context.SaveChangesAsync();
         
         return Ok();

@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HabitModel} from '../../api/models/habit.model';
+import {HttpClient} from '@angular/common/http';
+import {HabitApi} from '../../api/services/habit.api';
 
 @Component({
   selector: 'app-habit-display',
@@ -7,21 +9,15 @@ import {HabitModel} from '../../api/models/habit.model';
   templateUrl: './habit-display.component.html',
   styleUrl: './habit-display.component.scss'
 })
-export class HabitDisplayComponent {
-  habits: HabitModel[] = [
-    {
-      Name: 'Situps',
-      Uuid: "",
-      Description: "",
-      Trigger: null!
-    },
-
-    {
-      Name: 'planks',
-      Uuid: "",
-      Description: "",
-      Trigger: null!
+export class HabitDisplayComponent implements OnInit {
+  protected habits: HabitModel[] = [];
+  constructor(private habitApi: HabitApi) { }
+  ngOnInit(): void {
+    this.habitApi.getHabits("27cc9229-6039-43b6-a601-8612c31833d5").subscribe(h => {
+      this.habits = h
+      console.log(h);
     }
-  ];
+    )
+  }
 
 }

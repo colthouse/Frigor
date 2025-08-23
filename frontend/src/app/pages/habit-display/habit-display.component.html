@@ -3,7 +3,8 @@
 <mat-nav-list class="custom-list">
   <mat-list-item *ngFor="let habit of habits" class="custom-list-item">
     <div class="item-content">
-      <span class="item-text">{{ habit.Name }}</span>
+      <mat-checkbox></mat-checkbox>
+      <span class="item-text">{{ habit.name }}</span>
       <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="menu-button" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>

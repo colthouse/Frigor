@@ -1,7 +1,7 @@
 import { DayOfWeekEnum } from "../enums/day-of-week.enum"
 
 export interface CycleModel {
-    StartDate: Date
-    EndDate: Date
-    Weekdays: DayOfWeekEnum[]
+    startDate: Date
+    endDate: Date
+    weekdays: DayOfWeekEnum[]
 }
