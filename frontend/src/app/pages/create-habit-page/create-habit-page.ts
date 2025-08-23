@@ -47,6 +47,8 @@ export class CreateHabitPage implements OnInit{
     startDate: new FormControl(new Date()),
     endDate: new FormControl(new Date()),
     triggerType: new FormControl(TriggerTypeEnum.Habit),
+    godFather: new FormControl(''),
+    weekdays: new FormControl([]),
   });
 
   constructor (private userApi: UserApi) {  }
