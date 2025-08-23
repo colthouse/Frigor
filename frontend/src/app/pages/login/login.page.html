@@ -1,0 +1,13 @@
+<main>
+  <h1>Frigor Login</h1>
+  <div class="form">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input id="username" type="text" matInput [formControl]="usernameInput" />
+    </mat-form-field>
+
+    <button mat-raised-button type="button" (click)="submit()">
+      <mat-icon>login</mat-icon>Login
+    </button>
+  </div>
+</main>
