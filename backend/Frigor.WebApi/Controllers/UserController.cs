@@ -45,7 +45,9 @@ public class UserController(AppDbContext context) : ControllerBase
             return Ok(user.ToDto());
         }
 
-        var newUser = new User(name);
+        var newUser = new User() {
+            Name = name
+        };
         
         context.User.Add(newUser);
         await context.SaveChangesAsync();
@@ -53,26 +55,26 @@ public class UserController(AppDbContext context) : ControllerBase
         return Ok(newUser.ToDto());
     }
 
-    /// <summary>
-    /// Get responsibilities from user
-    /// </summary>
-    /// <param name="uuid">UUID of user to get responsibilities from</param>
-    /// <returns>Responsibilities</returns>
-    /// <response code="200">Responsibilities from user</response>
-    /// <response code="400">Not found</response>
-    [HttpGet("responsibilities/{uuid:guid}")]
-    public async Task<IActionResult> GetResponsibilities(Guid uuid)
-    {
-        User? user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
+    // <summary>
+    // Get responsibilities from user
+    // </summary>
+    // <param name="uuid">UUID of user to get responsibilities from</param>
+    // <returns>Responsibilities</returns>
+    // <response code="200">Responsibilities from user</response>
+    // <response code="400">Not found</response>
+    // [HttpGet("responsibilities/{uuid:guid}")]
+    // public async Task<IActionResult> GetResponsibilities(Guid uuid)
+    // {
+        // User? user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
 
-        if (user == null)
-        {
-            return NotFound();
-        }
+        // if (user == null)
+        // {
+        //     return NotFound();
+        // }
 
-        var users = await context.User.Where(u => user.Responsibilities.Contains(u.Uuid)).ToListAsync();
-        return Ok(users);
-    }
+        // var users = await context.User.Where(u => user.Responsibilities.Contains(u.Uuid)).ToListAsync();
+        // return Ok(users);
+    // }
 
     /// <summary>
     /// Gets all users expect oneself
