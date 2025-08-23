@@ -21,6 +21,10 @@ public class Trigger
         Occurrence = occurrence;
     }
 
+    public Trigger()
+    {
+    }
+
     public Guid Uuid  { get; set; }
     public TriggerType Type { get; set; }
     public Occurrence Occurrence { get; set; }

@@ -4,6 +4,10 @@ namespace Frigor.Common.Entities;
 
 public class Occurrence
 {
+    public Occurrence()
+    {
+    }
+
     public static Occurrence FromDto(OccurrenceDto dtoTriggerOccurrence)
     {
         return new Occurrence

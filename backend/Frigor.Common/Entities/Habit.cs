@@ -20,6 +20,10 @@ public class Habit
         Trigger = trigger;
     }
 
+    public Habit()
+    {
+    }
+
     public Guid Uuid { get; set; }
 
     public static Habit FromDto(HabitDto dto)
