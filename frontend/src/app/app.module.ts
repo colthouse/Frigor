@@ -27,6 +27,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient } from '@angular/common/http';
 import {MenuComponent} from './components/menu/menu.component';
 import {ComponentsModule} from './components/components.module';
+import {MatList, MatListItem, MatNavList} from '@angular/material/list';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -50,8 +52,14 @@ import {ComponentsModule} from './components/components.module';
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
-    ComponentsModule
-],
+    ComponentsModule,
+    MatList,
+    MatListItem,
+    MatNavList,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger
+  ],
   bootstrap: [AppComponent],
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient()]
 })
