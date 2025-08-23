@@ -1,20 +1,38 @@
 .main_container {
     margin: auto;
     width: 50%;
-    border: 3px solid darkgrey;
     padding: 10px;
     text-align: center;
     #create_habit{
         border: 3px solid black;
     }
+
     #habit_description {
         height: 300px;
         text-align: left;
         text-align: top;
     }
+
     form{
         margin: 0 auto;
         width: 250px;
     }
 
+    mat-form-field {
+        margin:0 auto;
+        width: 250px;
+    }
+
+    mat-card-header{
+        margin: 0 auto;
+        padding-bottom: 20px;
+    }
+
+    #create_button {
+        margin: 0 auto;
+    }
+
+    mat-button-toggle-group {
+        margin:0 auto;
+    }
 }
