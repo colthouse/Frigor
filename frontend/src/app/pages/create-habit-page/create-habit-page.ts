@@ -79,18 +79,22 @@ export class CreateHabitPage implements OnInit {
     this._snackBar.open("Set a Date when your habit will be triggered. This should be the date on which you want to do it.",
       'Close',
       {
-        duration: 10000, // 👈 10s = 10000 ms
+        duration: 7000, // 👈 10s = 10000 ms
       }
     );
   }
 
-  displayHabitStackInfo(): void {
-    this._snackBar.open("Set this habit to trigger once you've completed another habit. This process is called habit stacking.",
-      'Close',
-      {
-        duration: 10000, // 👈 10s = 10000 ms
-      });
-  }
+displayHabitStackInfo(): void {
+  this._snackBar.open(
+    "Set this habit to trigger once you've completed another habit. This process is called habit stacking.",
+    'Close',
+    {
+      duration: 7000, // 10 seconds
+      panelClass: ['snackbar'] // 👈 Add your custom class here
+    }
+  );
+}
+
 
   onsubmit() {
     if (this.habitForm.invalid) {

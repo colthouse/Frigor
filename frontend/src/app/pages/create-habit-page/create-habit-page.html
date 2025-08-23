@@ -1,5 +1,5 @@
 <div class="background">
-  <mat-card>
+  <mat-card class="colour_elevation">
     <h1>Habit creation</h1>
     <form [formGroup]="habitForm">
       <div class="width inputs">
@@ -24,23 +24,19 @@
       </mat-form-field>
 
       <mat-radio-group [formControlName]="'triggerType'" aria-label="Select a trigger for your habit">
-        <div>
           <mat-radio-button [value]="0">Date/Time trigger</mat-radio-button>
           <button (click)="displayDateTriggerInfo()" mat-icon-button>
             <mat-icon>
               info
             </mat-icon>
           </button>
-        </div>
 
-        <div>
           <mat-radio-button [value]="1">Habit stacking</mat-radio-button>
           <button (click)="displayHabitStackInfo()" mat-icon-button>
             <mat-icon>
               info
             </mat-icon>
           </button>
-        </div>
       </mat-radio-group>
 
       <ng-container *ngIf="triggerIsCycle;else habitChooser">
