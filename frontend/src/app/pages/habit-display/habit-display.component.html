@@ -1,4 +1,28 @@
-<mat-card class="habit-container">
-    <app-habit habitName="Pullup" habitDescription="Sports activity"></app-habit>
-    <app-habit habitName="Pushup" habitDescription="Sports activity"></app-habit>
-</mat-card>
+<app-menu></app-menu>
+
+<mat-nav-list class="custom-list">
+  <mat-list-item *ngFor="let habit of habits" class="custom-list-item">
+    <div class="item-content">
+      <span class="item-text">{{ habit.Name }}</span>
+      <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="menu-button" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </mat-list-item>
+</mat-nav-list>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>visibility</mat-icon>
+    <span>View</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>
+

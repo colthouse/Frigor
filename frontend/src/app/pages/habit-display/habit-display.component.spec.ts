@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HabitDisplayComponent } from './habit-display.component';
-import { HabitComponent } from "../../components/habit/habit.component";
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {HabitDisplayComponent} from './habit-display.component';
 
 describe('HabitDisplayComponent', () => {
   let component: HabitDisplayComponent;
@@ -10,7 +9,7 @@ describe('HabitDisplayComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HabitDisplayComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HabitDisplayComponent);
     component = fixture.componentInstance;
