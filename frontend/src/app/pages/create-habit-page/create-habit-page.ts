@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from "@angular/material/button";
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -20,8 +22,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatDatepickerModule,
     MatCheckboxModule,
     MatInputModule,
-    MatButton,
-    MatButtonToggleModule
+    MatButtonModule,
+    MatButtonToggleModule,
 ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
