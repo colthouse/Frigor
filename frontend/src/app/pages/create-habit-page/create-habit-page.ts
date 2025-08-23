@@ -18,6 +18,7 @@ import { UserModel } from '../../api/models/user.model';
 import { HabitModel } from '../../api/models/habit.model';
 import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
+import { HabitModel } from '../../api/models/habit.model';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -84,10 +85,30 @@ export class CreateHabitPage implements OnInit{
 
   }
 
-
-
+  onsubmit(){
+    let habit: HabitModel={
+      Name: this.habitForm.value.name!,
+      Uuid: '',
+      Description: this.habitForm.value.description!,
+      Trigger: {
+        Uuid: '',
+        Type: this.habitForm.value.triggerType!,
+        Occurrence: {
+          Date: this.habitForm.value.startDate!,
+          IsAchieved: false
+        },
+        Cycle: {
+          StartDate: this.habitForm.value.startDate!,
+          EndDate: this.habitForm.value.endDate!,
+          Weekdays: this.habitForm.value.weekdays!
+        }}
+      }
+    }
   protected readonly TriggerTypeEnum = TriggerTypeEnum;
 }
+
+  
+
 
 
 
