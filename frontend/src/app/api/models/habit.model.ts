@@ -5,4 +5,6 @@ export interface HabitModel {
     name: string
     description: string;
     trigger: TriggerModel;
+    godparentUserId: string | null; 
+    ownerId: string;
 }

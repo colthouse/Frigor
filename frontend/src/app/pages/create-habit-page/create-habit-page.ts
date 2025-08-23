@@ -20,6 +20,7 @@ import {NgIf} from '@angular/common';
 import {HabitApi} from '../../api/services/habit.api';
 import {MenuComponent} from '../../components/menu/menu.component';
 import {Router} from '@angular/router';
+import { UserHelper } from '../../helpers/user.helper';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -59,7 +60,7 @@ export class CreateHabitPage implements OnInit {
   });
   private _snackBar = inject(MatSnackBar);
 
-  constructor(private userApi: UserApi, private habitApi: HabitApi, private router: Router) {
+  constructor(private userApi: UserApi, private habitApi: HabitApi, private _userHelper: UserHelper, private router: Router) {
   }
 
   protected get triggerIsCycle(): boolean {
@@ -71,7 +72,7 @@ export class CreateHabitPage implements OnInit {
       this.userList = u
     );
 
-    this.habitApi.getHabits(localStorage.getItem('uuid')!).subscribe(h => this.options = h)
+    this.habitApi.getHabits().subscribe(h => this.options = h)
 
   }
 
@@ -114,10 +115,12 @@ export class CreateHabitPage implements OnInit {
           endDate: this.habitForm.value.endDate!,
           weekdays: this.habitForm.value.weekdays!
         },
-      }
+      },
+      godparentUserId: this.habitForm.value.godFather!,
+      ownerId: this._userHelper.GetUuid()
     }
 
-    this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(() =>
+    this.habitApi.createHabit(habit).subscribe(() =>
           this.router.navigate(['/habit-display'])
     )
   }

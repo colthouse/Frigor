@@ -15,6 +15,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 import { MenuComponent } from '../../components/menu/menu.component';
+import { HabitModel } from '../../api/models/habit.model';
+import { HabitApi } from '../../api/services/habit.api';
 
 @Component({
   selector: 'app-responsibilities-overview',
@@ -41,4 +43,14 @@ templateUrl: './responsibilities-overview.component.html',
 export class ResponsibilitiesOverviewComponent {
   userCtrl = new FormControl('');
   displayedColumns = ['title', 'owner', 'streak', 'status', 'created', 'tags'];
+  //end vibe
+  protected habits: HabitModel[] = [];
+  constructor(private habitApi: HabitApi) { }
+
+  ngOnInit(): void {
+    this.habitApi.getGodparentHabits().subscribe(h => {
+      this.habits = h
+    }
+    )
+  } 
 }
