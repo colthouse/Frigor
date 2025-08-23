@@ -96,6 +96,12 @@ export class CreateHabitPage implements OnInit {
     if (this.habitForm.invalid) {
       return
     }
+<<<<<<< HEAD
+=======
+          this.habitApi.createHabit(habit).subscribe(
+        value => console.log(value.Uuid)
+      )
+>>>>>>> 370e4ea (Changes? I forgot :skull-emoji)
 
     let habit: HabitModel = {
       name: this.habitForm.value.name!,
