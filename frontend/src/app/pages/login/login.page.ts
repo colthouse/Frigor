@@ -6,6 +6,7 @@ import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'login-page',
@@ -17,7 +18,8 @@ import {Router} from '@angular/router';
     ReactiveFormsModule,
     MatIcon,
     MatButton,
-    MatInput
+    MatInput,
+    MatCard
   ],
   styleUrl: './login.page.scss'
 })
