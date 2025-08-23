@@ -17,8 +17,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
 import {HabitModel} from '../../api/models/habit.model';
 import {NgIf} from '@angular/common';
-import {ComponentsModule} from '../../components/components.module';
 import { HabitApi } from '../../api/services/habit.api';
+import {MenuComponent} from '../../components/menu/menu.component';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -35,7 +35,7 @@ import { HabitApi } from '../../api/services/habit.api';
     MatIconModule,
     MatSelectModule,
     NgIf,
-    ComponentsModule
+    MenuComponent,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
