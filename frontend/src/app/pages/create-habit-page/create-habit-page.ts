@@ -103,7 +103,7 @@ export class CreateHabitPage implements OnInit {
       description: this.habitForm.value.description!,
       trigger: {
         uuid: '',
-        habitIds: this.habitForm.value.habits!,
+        habits: this.habitForm.value.habits!,
         type: this.habitForm.value.triggerType!,
         occurrence: {
           date: this.habitForm.value.startDate!,
@@ -118,7 +118,7 @@ export class CreateHabitPage implements OnInit {
     }
 
     this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(() =>
-          this.router.navigate(['/habitDisplay'])
+          this.router.navigate(['/habit-display'])
     )
   }
 }

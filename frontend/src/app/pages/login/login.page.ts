@@ -34,7 +34,7 @@ export class LoginPage {
     this._userApi.loadOrCreate(username).subscribe({
         next: (value) => {
           this.saveUuid(value.uuid);
-          this.router.navigate(['/habitDisplay']);
+          this.router.navigate(['/habit-display']);
         }
       }
       )

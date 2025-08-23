@@ -23,6 +23,8 @@ public class HabitController(AppDbContext context): ControllerBase
         var habits = await context.Habits
             .Include(h => h.Trigger)
             .ThenInclude(t => t.Occurrence)
+            .Include(h => h.Trigger)
+            .ThenInclude(t => t.Cycle)
             .Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
         
         return Ok(habits);
@@ -31,6 +33,7 @@ public class HabitController(AppDbContext context): ControllerBase
     [HttpPost("{uuid:guid}")]
     public async Task<IActionResult> CreateHabit(Guid uuid, [FromBody] HabitCreationDto habit)
     {
+        Console.WriteLine(habit.Trigger.Habits.Count);
         var createdHabit = context.Habits.Add(Habit.FromDto(habit));
         var user = context.User.FirstOrDefault(u => u.Uuid == uuid);
         user.Habits.Add(createdHabit.Entity.Uuid);
@@ -54,6 +57,8 @@ public class HabitController(AppDbContext context): ControllerBase
         var habit = await context.Habits
             .Include(h => h.Trigger)
             .ThenInclude(t => t.Occurrence)
+            .Include(h => h.Trigger)
+            .ThenInclude(t => t.Cycle)
             .FirstAsync(habit => habit.Uuid == uuid);
         
         habit.Trigger.Occurrence.IsAchieved = achieved;
