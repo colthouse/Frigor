@@ -8,14 +8,12 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-      - ./media:/media
       - /app/Frigor.Common/bin
       - /app/Frigor.Common/obj
       - /app/Frigor.DataAccess/bin
       - /app/Frigor.DataAccess/obj
       - /app/Frigor.WebApi/bin
       - /app/Frigor.WebApi/obj
-      - /app/media
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frigor_backend.rule=Host(`frigor.test`) && PathPrefix(`/api/`)"
