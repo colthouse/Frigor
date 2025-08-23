@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatAnchor, MatIconButton} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
+import {MatListItem, MatNavList} from '@angular/material/list';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +15,13 @@ import {MatIcon} from '@angular/material/icon';
     MatAnchor,
     RouterLink,
     MatIconButton,
-    MatIcon
+    MatIcon,
+    MatSidenavContent,
+    MatSidenav,
+    MatSidenavContainer,
+    RouterOutlet,
+    MatNavList,
+    MatListItem
   ],
   styleUrl: './menu.component.scss'
 })

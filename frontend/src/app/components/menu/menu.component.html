@@ -1,13 +1,33 @@
-<mat-toolbar color="primary">
-  <span class="logo">Frigor</span>
-  <nav class="nav-links">
-    <a mat-button routerLink="/welcome">Home</a>
-    <a mat-button routerLink="/habit-display">Habit Display</a>
-    <a mat-button routerLink="/create-habit">Create Habit</a>
-    <a mat-button routerLink="/responsibilities">God parent overview</a>
-  </nav>
-  <span class="spacer"></span>
-  <button mat-icon-button aria-label="User Account" routerLink="/login">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
+<mat-sidenav-container>
+
+  <mat-sidenav #drawer mode="over" class="app-sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/welcome" (click)="drawer.close()">Home</a>
+      <a mat-list-item routerLink="/habit-display" (click)="drawer.close()">Habit Display</a>
+      <a mat-list-item routerLink="/create-habit" (click)="drawer.close()">Create Habit</a>
+      <a mat-list-item routerLink="/responsibilities" (click)="drawer.close()">God parent overview</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" aria-label="Toggle menu" class="burger-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="logo">Frigor</span>
+
+      <nav class="nav-links desktop-nav">
+        <a mat-button routerLink="/welcome">Home</a>
+        <a mat-button routerLink="/habit-display">Habit Display</a>
+        <a mat-button routerLink="/create-habit">Create Habit</a>
+        <a mat-button routerLink="/responsibilities">God parent overview</a>
+      </nav>
+
+      <span class="spacer"></span>
+      <button mat-icon-button aria-label="User Account" routerLink="/login">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
