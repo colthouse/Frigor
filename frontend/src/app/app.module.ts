@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';  // Needed for browser apps
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Needed for Angular Material animations
-import { RouterModule } from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
@@ -23,6 +23,8 @@ import { HabitDisplayComponent } from './pages/habit-display/habit-display.compo
 import { MatIcon } from "@angular/material/icon";
 import { LoginPage } from './pages/login/login.page';
 import { MatIconModule } from '@angular/material/icon';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonToggleModule,
     MatIconModule
 ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient()]
 })
 export class AppModule { }
