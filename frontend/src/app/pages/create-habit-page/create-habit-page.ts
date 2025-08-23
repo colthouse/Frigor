@@ -15,7 +15,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { UserApi } from '../../api/services/user.api';
 import { UserModel } from '../../api/models/user.model';
-import { HabitModel } from '../../api/models/habit.model';
 import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
 import { HabitModel } from '../../api/models/habit.model';
