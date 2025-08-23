@@ -5,7 +5,6 @@ import {provideRouter, RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
-import { GabiSpace } from './pages/gabi-space/gabi-space';
 
 // Angular Material modules
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,13 +21,14 @@ import {routes} from './app.routes';
 import {HabitComponent} from './components/habit/habit.component';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideHttpClient} from '@angular/common/http';
+import { LoginPage } from './pages/login/login.page';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GabiSpace,
-    HabitComponent
-
+    HabitComponent,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -44,6 +44,7 @@ import {provideHttpClient} from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatIconModule
   ],
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideHttpClient()],
   bootstrap: [AppComponent]

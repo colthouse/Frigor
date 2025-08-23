@@ -8,8 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'login-page',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
-  standalone: true,
+  standalone: false,
   templateUrl: './login.page.html',
   styleUrl: './login.page.scss'
 })
@@ -20,11 +19,18 @@ export class LoginPage {
   constructor(private _userApi: UserApi) {}
 
   submit() {
+    console.log("asfd")
     let username: string | null = this.usernameInput.value;
 
-    if (username == null)
-      return;
+    if (username == null) return;
+    console.log("asdd")
 
-    this._userApi.loadOrCreate(username).subscribe();
+    this._userApi.loadOrCreate(username).subscribe(
+      value => console.log('User UUID is.' + value)
+    );
+  }
+
+  saveUuid(id:number) {
+    
   }
 }
