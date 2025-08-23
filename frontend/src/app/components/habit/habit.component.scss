@@ -1,16 +1,29 @@
 @use '@angular/material' as mat;
 
-.habit-box{
-    background-color: gray;
+.habit-elements{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4px;
+    border-radius: 5px;
+}
+
+.habit-holder{
     width: 250px;
     border-radius: 5px;
-    margin: 4px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
 }
+.description{
+    text-align: center;
+    font-size: 14px;
+}
+
 button{
-    margin: 3px;
+    margin-top: 5px;
+    margin-left:    60px;
+    border: 0px;
     height:auto;
     width:auto;
 }

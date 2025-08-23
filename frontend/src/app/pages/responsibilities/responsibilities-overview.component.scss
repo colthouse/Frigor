@@ -1,0 +1,39 @@
+/* src/app/pages/godfather-overview/godfather-overview.component.scss */
+.page {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search-card .full {
+  width: 100%;
+}
+
+.results-card table {
+  width: 100%;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px;
+}
+.empty mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+}
+.empty .title {
+  font-weight: 600;
+}
+.empty .subtitle {
+  opacity: 0.8;
+  font-size: 13px;
+}

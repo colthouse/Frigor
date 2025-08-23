@@ -2,13 +2,15 @@
 
 <div class="habit-box">
     <div class="habit-holder">
-        <button matMiniFab aria-label="Edit">
-            <mat-icon>menu</mat-icon>
-        </button>
+            <a routerLink="create-habit">
+                <button matIconButton aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </a>
         <mat-checkbox class="habit">{{habitName}}</mat-checkbox>
     </div>
-    <div>
-        <p>{{habitDescription}}</p>
+    <div class="description">
+        <p>Sports activity</p>
     </div>
 </div>
 

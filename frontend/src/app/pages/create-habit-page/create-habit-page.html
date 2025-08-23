@@ -2,80 +2,91 @@
 
 <div class="background">
   <h1>Habit creation</h1>
-<mat-card>
-  <form [formGroup]="habitForm">
-    <div class="width inputs">
-    <mat-form-field class="width">
-      <mat-label>Give your new habit a name</mat-label>
-      <input [formControlName]="'name'" form matInput>
-    </mat-form-field>
+  <mat-card>
+    <form [formGroup]="habitForm">
+      <div class="width inputs">
+        <mat-form-field class="width">
+          <mat-label>Give your new habit a name</mat-label>
+          <input [formControlName]="'name'" form matInput>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>God parent</mat-label>
-      <mat-select [formControlName]="'godFather'">
-        @for (user of userList; track user) {
-          <mat-option [value]="user.uuid">{{ user.name }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    </div>
-
-    <mat-form-field class="width">
-      <mat-label>Describe your habit</mat-label>
-      <textarea [formControlName]="'description'" matInput></textarea>
-    </mat-form-field>
-
-    <mat-radio-group [formControlName]="'triggerType'" aria-label="Select a trigger for your habit">
-      <div>
-        <mat-radio-button [value]="0">Date/Time trigger</mat-radio-button>
-        <button (click)="displayDateTriggerInfo()" mat-icon-button>
-          <mat-icon>
-            info
-          </mat-icon>
-        </button>
+        <mat-form-field>
+          <mat-label>God parent</mat-label>
+          <mat-select [formControlName]="'godFather'">
+            @for (user of userList; track user) {
+              <mat-option [value]="user.uuid">{{ user.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
       </div>
 
-      <div>
-        <mat-radio-button [value]="1">Habit stacking</mat-radio-button>
-        <button (click)="displayHabitStackInfo()" mat-icon-button>
-          <mat-icon>
-            info
-          </mat-icon>
-        </button>
-      </div>
-    </mat-radio-group>
+      <mat-form-field class="width">
+        <mat-label>Describe your habit</mat-label>
+        <textarea [formControlName]="'description'" matInput></textarea>
+      </mat-form-field>
 
-     <ng-container *ngIf="triggerIsCycle">
+      <mat-radio-group [formControlName]="'triggerType'" aria-label="Select a trigger for your habit">
+        <div>
+          <mat-radio-button [value]="0">Date/Time trigger</mat-radio-button>
+          <button (click)="displayDateTriggerInfo()" mat-icon-button>
+            <mat-icon>
+              info
+            </mat-icon>
+          </button>
+        </div>
 
-    <mat-form-field class="width">
-      <mat-label>Choose a start date</mat-label>
-      <input [formControlName]="'startDate'" [matDatepicker]="pickerStart" matInput>
-      <mat-datepicker-toggle [for]="pickerStart" matIconSuffix></mat-datepicker-toggle>
-      <mat-datepicker #pickerStart></mat-datepicker>
-    </mat-form-field>
+        <div>
+          <mat-radio-button [value]="1">Habit stacking</mat-radio-button>
+          <button (click)="displayHabitStackInfo()" mat-icon-button>
+            <mat-icon>
+              info
+            </mat-icon>
+          </button>
+        </div>
+      </mat-radio-group>
 
-    <mat-form-field class="width">
-      <mat-label>Choose an end date</mat-label>
-      <input [formControlName]="'endDate'" [matDatepicker]="pickerEnd" matInput>
-      <mat-datepicker-toggle [for]="pickerEnd" matIconSuffix></mat-datepicker-toggle>
-      <mat-datepicker #pickerEnd></mat-datepicker>
-    </mat-form-field>
+      <ng-container *ngIf="triggerIsCycle;else habitChooser">
 
-    <p>Select days for your new habit</p>
+        <mat-form-field class="width">
+          <mat-label>Choose a start date</mat-label>
+          <input [formControlName]="'startDate'" [matDatepicker]="pickerStart" matInput>
+          <mat-datepicker-toggle [for]="pickerStart" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerStart></mat-datepicker>
+        </mat-form-field>
 
-    <mat-button-toggle-group class="week-chooser" [formControlName]="'weekdays'" multiple="">
-      <mat-button-toggle [value]="1">Mon</mat-button-toggle>
-      <mat-button-toggle [value]="2">Tue</mat-button-toggle>
-      <mat-button-toggle [value]="3">Wed</mat-button-toggle>
-      <mat-button-toggle [value]="4">Thu</mat-button-toggle>
-      <mat-button-toggle [value]="5">Fri</mat-button-toggle>
-      <mat-button-toggle [value]="6">Sat</mat-button-toggle>
-      <mat-button-toggle [value]="0">Sun</mat-button-toggle>
-    </mat-button-toggle-group>
+        <mat-form-field class="width">
+          <mat-label>Choose an end date</mat-label>
+          <input [formControlName]="'endDate'" [matDatepicker]="pickerEnd" matInput>
+          <mat-datepicker-toggle [for]="pickerEnd" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
 
-     </ng-container>
+        <p>Select days for your new habit</p>
 
-    <button (click)=onsubmit(); id="create_button" mat-flat-button>
+        <mat-button-toggle-group [formControlName]="'weekdays'" class="week-chooser" multiple="">
+          <mat-button-toggle [value]="1">Mon</mat-button-toggle>
+          <mat-button-toggle [value]="2">Tue</mat-button-toggle>
+          <mat-button-toggle [value]="3">Wed</mat-button-toggle>
+          <mat-button-toggle [value]="4">Thu</mat-button-toggle>
+          <mat-button-toggle [value]="5">Fri</mat-button-toggle>
+          <mat-button-toggle [value]="6">Sat</mat-button-toggle>
+          <mat-button-toggle [value]="0">Sun</mat-button-toggle>
+        </mat-button-toggle-group>
+
+      </ng-container>
+
+      <ng-template #habitChooser>
+        <mat-form-field class="width">
+          <mat-label>Habits</mat-label>
+          <mat-select [formControlName]="'habits'" multiple>
+            @for (habitModel of options; track habitModel) {
+              <mat-option [value]="habitModel.uuid">{{habitModel.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+
+    <button (click)="onsubmit()" id="create_button" mat-raised-button>
       Create habit
     </button>
   </form>

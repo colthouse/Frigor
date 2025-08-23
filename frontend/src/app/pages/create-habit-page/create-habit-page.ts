@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
@@ -17,8 +17,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {TriggerTypeEnum} from '../../api/enums/trigger-type.enum';
 import {HabitModel} from '../../api/models/habit.model';
 import {NgIf} from '@angular/common';
-import {ComponentsModule} from '../../components/components.module';
-import { HabitApi } from '../../api/services/habit.api';
+import {HabitApi} from '../../api/services/habit.api';
+import {MenuComponent} from '../../components/menu/menu.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -35,7 +36,7 @@ import { HabitApi } from '../../api/services/habit.api';
     MatIconModule,
     MatSelectModule,
     NgIf,
-    ComponentsModule
+    MenuComponent,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
@@ -43,31 +44,34 @@ import { HabitApi } from '../../api/services/habit.api';
   standalone: true
 })
 export class CreateHabitPage implements OnInit {
-  protected userList: UserModel[] = []
+  options: HabitModel[] = [];
 
+  protected userList: UserModel[] = []
   protected habitForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    godFather: new FormControl('', Validators.required),
+    triggerType: new FormControl(TriggerTypeEnum.Habit, Validators.required),
     startDate: new FormControl(new Date()),
     endDate: new FormControl(new Date()),
-    triggerType: new FormControl(TriggerTypeEnum.Habit),
-    godFather: new FormControl(''),
     weekdays: new FormControl([]),
+    habits: new FormControl([]),
   });
-  protected readonly TriggerTypeEnum = TriggerTypeEnum;
   private _snackBar = inject(MatSnackBar);
+
+  constructor(private userApi: UserApi, private habitApi: HabitApi, private router: Router) {
+  }
 
   protected get triggerIsCycle(): boolean {
     return this.habitForm.value.triggerType == TriggerTypeEnum.Cycle
-  }
-
-  constructor(private userApi: UserApi, private habitApi: HabitApi) {
   }
 
   ngOnInit(): void {
     this.userApi.getAll().subscribe(u =>
       this.userList = u
     );
+
+    this.habitApi.getHabits(localStorage.getItem('uuid')!).subscribe(h => this.options = h)
 
   }
 
@@ -88,17 +92,18 @@ export class CreateHabitPage implements OnInit {
       });
   }
 
-  openUserList() {
-
-  }
-
   onsubmit() {
+    if (this.habitForm.invalid) {
+      return
+    }
+
     let habit: HabitModel = {
       name: this.habitForm.value.name!,
       uuid: '',
       description: this.habitForm.value.description!,
       trigger: {
         uuid: '',
+        habits: this.habitForm.value.habits!,
         type: this.habitForm.value.triggerType!,
         occurrence: {
           date: this.habitForm.value.startDate!,
@@ -108,15 +113,13 @@ export class CreateHabitPage implements OnInit {
           startDate: this.habitForm.value.startDate!,
           endDate: this.habitForm.value.endDate!,
           weekdays: this.habitForm.value.weekdays!
-        }
-
+        },
       }
-
     }
-          this.habitApi.createHabit("27cc9229-6039-43b6-a601-8612c31833d5", habit).subscribe(
-        value => console.log(value)
-      )
 
+    this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(() =>
+          this.router.navigate(['/habit-display'])
+    )
   }
 }
 

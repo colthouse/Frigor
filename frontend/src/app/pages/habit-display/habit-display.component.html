@@ -3,27 +3,28 @@
 <mat-nav-list class="custom-list">
   <mat-list-item *ngFor="let habit of habits" class="custom-list-item">
     <div class="item-content">
-      <mat-checkbox></mat-checkbox>
+      <mat-checkbox #checkbox (click)="onAchieved(habit.uuid, checkbox.checked)"></mat-checkbox>
       <span class="item-text">{{ habit.name }}</span>
       <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="menu-button" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
     </div>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>visibility</mat-icon>
+        <span>View</span>
+      </button>
+      <button mat-menu-item (click)="onDelete(habit.uuid)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+
   </mat-list-item>
 </mat-nav-list>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>edit</mat-icon>
-    <span>Edit</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>visibility</mat-icon>
-    <span>View</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>delete</mat-icon>
-    <span>Delete</span>
-  </button>
-</mat-menu>
 
