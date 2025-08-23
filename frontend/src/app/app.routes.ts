@@ -5,6 +5,7 @@ import { LoginPage } from './pages/login/login.page';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
 import { HabitDisplayComponent } from './pages/habit-display/habit-display.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ResponsibilitiesOverviewComponent } from './pages/responsibilities/responsibilities-overview.component';
 
 export const routes: Routes = [
       {
@@ -36,5 +37,10 @@ export const routes: Routes = [
         path: 'welcome',
         component: WelcomeComponent,
         pathMatch: 'full',
-      }
+      },
+      {
+        path: 'responsibilities',
+        component: ResponsibilitiesOverviewComponent,
+        pathMatch: 'full',
+      },
   ];
