@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MenuComponent } from '../../components/menu/menu.component';
 
 @Component({
   selector: 'app-responsibilities-overview',
@@ -32,6 +33,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatProgressBarModule,
     MatTableModule,
     MatChipsModule,
+    MenuComponent
   ],
 templateUrl: './responsibilities-overview.component.html',
   styleUrl: './responsibilities-overview.component.scss',
