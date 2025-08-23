@@ -61,7 +61,7 @@ export class CreateHabitPage implements OnInit {
     return this.habitForm.value.triggerType == TriggerTypeEnum.Cycle
   }
 
-  constructor(private userApi: UserApi) {
+  constructor(private userApi: UserApi, private habitApi: HabitApi) {
   }
 
   ngOnInit(): void {
@@ -109,9 +109,13 @@ export class CreateHabitPage implements OnInit {
           EndDate: this.habitForm.value.endDate!,
           Weekdays: this.habitForm.value.weekdays!
         }
+        
       }
-    }
 
+    }
+          this.habitApi.createHabit(habit).subscribe(
+        value => console.log(value)
+      )
 
   }
 }
