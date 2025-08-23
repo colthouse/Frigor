@@ -6,27 +6,23 @@ using Microsoft.EntityFrameworkCore;
 namespace Frigor.WebApi.Controllers;
 
 [ApiController]
-[Route("/user")]
-public class UserController : ControllerBase
+[Route("[controller]")]
+public class UserController(AppDbContext context) : ControllerBase
 {
-    private readonly AppDbContext _context;
-
-    public UserController(AppDbContext context)
-    {
-        _context = context;
-    }
-
     /// <summary>
     /// Get user with id
     /// </summary>
-    /// <param name="id">Id of the user</param>
+    /// <param name="uuid">Uuid of the user</param>
     /// <returns><see cref="IActionResult"/></returns>
     /// <response code="200">Successful</response>
     /// <response code="400">User with specified Id was not found</response>
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetUser(int id)
+    [HttpGet("{uuid}")]
+    public async Task<IActionResult> GetUser(Guid uuid)
     {
-        var user = await _context.User.FirstOrDefaultAsync(u => u.Id == id);
+        Console.WriteLine(uuid);
+
+        User? user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
+
         if (user == null)
         {
             return NotFound();
@@ -45,15 +41,17 @@ public class UserController : ControllerBase
     [HttpPost("{name}")]
     public async Task<IActionResult> CreateUser(string name)
     {
-        var user = await _context.User.FirstOrDefaultAsync(u => u.Name == name);
+        User? user = await context.User.FirstOrDefaultAsync(u => u.Name == name);
         if (user != null)
         {
-            return Forbid();
+            return StatusCode(403);
         }
+
+        User newUser = new User(name);
         
-        var createdUser = _context.User.Add(new User(name));
-        await _context.SaveChangesAsync();
+        context.User.Add(newUser);
+        await context.SaveChangesAsync();
         
-        return Ok(createdUser.Entity.Id);
+        return Ok(newUser.Uuid);
     }
 }

@@ -8,6 +8,6 @@ public class HabitConfiguration : IEntityTypeConfiguration<Habit>
 {
     public void Configure(EntityTypeBuilder<Habit> builder)
     {
-        builder.HasKey(h => h.Id);
+        builder.HasKey(h => h.Uuid);
     }
 }
