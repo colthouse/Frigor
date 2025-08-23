@@ -3,12 +3,12 @@ namespace Frigor.Common.Dtos;
 
 public class UserDto
 {
-    public int Id { get; set;  }
+    public Guid Uuid { get; set;  }
     public string Name { get; set; }
 
-    public UserDto(int id, string name)
+    public UserDto(Guid uuid, string name)
     {
-        Id = id;
+        Uuid = uuid;
         Name = name;
     }
 }

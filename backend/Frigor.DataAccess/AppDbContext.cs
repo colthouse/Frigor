@@ -7,22 +7,15 @@ using Microsoft.Extensions.Options;
 
 namespace Frigor.DataAccess;
 
-public class AppDbContext : DbContext
+public class AppDbContext(IOptions<AppSettings> options) : DbContext
 {
-    private readonly IOptions<AppSettings> _options;
-
-    public AppDbContext(IOptions<AppSettings> options)
-    {
-        _options = options;
-    }
-
-    public DbSet<Habit> Habits { get; set; }
-    public DbSet<User> User { get; set; }
+    public DbSet<Habit> Habits { get; set; } = null!;
+    public DbSet<User> User { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseExceptionProcessor();
-        optionsBuilder.UseNpgsql(_options.Value.PgConnectionString);
+        optionsBuilder.UseNpgsql(options.Value.PgConnectionString);
         optionsBuilder.EnableSensitiveDataLogging();
     }
 
