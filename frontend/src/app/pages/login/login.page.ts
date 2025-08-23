@@ -5,6 +5,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'login-page',
@@ -16,19 +17,23 @@ export class LoginPage {
   usernameInput = new FormControl('');
 
 
-  constructor(private _userApi: UserApi) {}
+  constructor(private _userApi: UserApi, private router: Router) {}
 
   submit() {
     let username: string | null = this.usernameInput.value;
     if (username == null || username === "") return;
 
-    this._userApi.loadOrCreate(username).subscribe(
-      value => this.saveUuid(value.uuid)
-    );
+    this._userApi.loadOrCreate(username).subscribe({
+        next: (value) => {
+          this.saveUuid(value.uuid);
+          this.router.navigate(['/habitDisplay']);
+        }
+      }
+      )
   }
 
   saveUuid(id:string) {
     localStorage.setItem('uuid', id);
-    console.log(localStorage.getItem('uuid'));
+
   }
 }

@@ -113,7 +113,9 @@ export class CreateHabitPage implements OnInit {
       }
 
     }
-          this.habitApi.createHabit("27cc9229-6039-43b6-a601-8612c31833d5", habit).subscribe(
+
+
+          this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(
         value => console.log(value)
       )
 
