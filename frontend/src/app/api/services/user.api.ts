@@ -17,4 +17,8 @@ export class UserApi {
   loadOrCreate(name: string): Observable<UserModel> {
     return this._httpClient.post<UserModel>(this.basePath + name, {})
   }
+
+  getAll(): Observable<UserModel[]>{
+    return this._httpClient.get<UserModel[]>(this.basePath + "/all", {})
+  }
 }
