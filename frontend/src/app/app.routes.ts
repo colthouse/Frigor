@@ -5,6 +5,7 @@ import { LoginPage } from './pages/login/login.page';
 import { CreateHabitPage } from './pages/create-habit-page/create-habit-page';
 import { HabitOverviewPage } from './pages/habit-overview/habit-overview.page';
 import { HabitDisplayComponent } from './pages/habit-display/habit-display.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 export const routes: Routes = [
       {
@@ -35,6 +36,11 @@ export const routes: Routes = [
       {
         path: 'habit-overview',
         component: HabitOverviewPage,
+        pathMatch: 'full',
+      },
+      {
+      path: 'welcome',
+        component: WelcomeComponent,
         pathMatch: 'full',
       }
   ];
