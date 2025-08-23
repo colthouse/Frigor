@@ -39,14 +39,12 @@ namespace Frigor.DataAccess.Migrations
                     b.Property<Guid>("Uuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
                     b.Property<int>("Habit")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
                     b.Property<List<Guid>>("Responsibilities")
                         .IsRequired()
                         .HasColumnType("uuid[]");
