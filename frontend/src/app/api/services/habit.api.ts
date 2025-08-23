@@ -15,8 +15,8 @@ export class HabitApi {
     this.basePath = UrlHelper.getApiBase() + 'habit/';
   }
 
-  createHabit(uuid: string, habit: HabitCreationModel): Observable<HabitModel> {
-    return this._httpClient.post<HabitModel>(this.basePath+uuid, habit)
+  createHabit(habit: HabitCreationModel): Observable<HabitModel> {
+    return this._httpClient.post<HabitModel>(this.basePath, habit)
   }
 
   getHabits(uuid: string): Observable<HabitModel[]> {

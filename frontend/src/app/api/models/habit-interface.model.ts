@@ -4,7 +4,6 @@ import {OccurrenceModel} from './occurrence.model';
 import {HabitTriggerModel} from './habit-trigger.model';
 
 export interface HabitInterface {
-    uuid: string;
     name: string
     description: string;
     trigger: TriggerModel;

@@ -6,7 +6,6 @@ public class TriggerDto
 {
     public Guid Uuid  { get; set; }
     public TriggerType Type { get; set; }
-    public OccurrenceDto Occurrence { get; set; } = null!;
     public IEnumerable<HabitDto>? Habits { get; set; } = new List<HabitDto>();
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }

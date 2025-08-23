@@ -121,7 +121,6 @@ displayHabitStackInfo(): void {
     }
 
     let habit: HabitCreationModel = {
-      uuid: '',
       name: this.habitForm.value.name!,
       description: this.habitForm.value.description!,
       godParent: this.habitForm.value.godFather!,
@@ -131,7 +130,7 @@ displayHabitStackInfo(): void {
       habitTriggers: [],
     }
 
-    this.habitApi.createHabit(localStorage.getItem('uuid')!, habit).subscribe(() =>
+    this.habitApi.createHabit(habit).subscribe(() =>
           this.router.navigate(['/habit-display'])
     )
   }

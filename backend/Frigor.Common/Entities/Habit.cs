@@ -45,6 +45,8 @@ public class Habit
         {
             Name = dto.Name,
             Description = dto.Description,
+            GodparentUuid = dto.GodParent,
+            OwnerUuid = dto.Owner,
             Trigger = Trigger.FromDto(dto.Trigger),
         };
 

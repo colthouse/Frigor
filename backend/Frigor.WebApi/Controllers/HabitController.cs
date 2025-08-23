@@ -10,37 +10,25 @@ namespace Frigor.WebApi.Controllers;
 [Route("[controller]")]
 public class HabitController(AppDbContext context): ControllerBase
 {
-    // /// <summary>Get Habits</summary>
-    // /// <return>Habits</return>
-    // /// <response code="200">Successful</response>
-    // [HttpGet("{uuid:guid}")]
-    // public async Task<IActionResult> GetHabits(Guid uuid)
-    // {
-    //     var user = await context.User
-    //         .FirstOrDefaultAsync(u => u.Uuid == uuid);
-    //     if (user == null) return NotFound();
+    /// <summary>Get Habits</summary>
+    /// <return>Habits</return>
+    /// <response code="200">Successful</response>
+    [HttpGet("{uuid:guid}")]
+    public async Task<IActionResult> GetHabits(Guid uuid)
+    {
+        var habits = await context.Habits.Where(h => h.OwnerUuid == uuid).ToListAsync();
 
-    //     var habits = await context.Habits
-    //         .Include(h => h.Trigger)
-    //         .ThenInclude(t => t.Occurrence)
-    //         .Include(h => h.Trigger)
-    //         .ThenInclude(t => t.Cycle)
-    //         .Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
+        return Ok(habits);
+    }
 
-    //     return Ok(habits);
-    // }
+    [HttpPost]
+    public async Task<IActionResult> CreateHabit([FromBody] HabitCreationDto habit)
+    {
+        context.Habits.Add(Habit.FromDto(habit));
+        await context.SaveChangesAsync();
 
-    // [HttpPost("{uuid:guid}")]
-    // public async Task<IActionResult> CreateHabit(Guid uuid, [FromBody] HabitCreationDto habit)
-    // {
-    //     Console.WriteLine(habit.Trigger.Habits.Count);
-    //     var createdHabit = context.Habits.Add(Habit.FromDto(habit));
-    //     var user = context.User.FirstOrDefault(u => u.Uuid == uuid);
-    //     user.Habits.Add(createdHabit.Entity.Uuid);
-    //     await context.SaveChangesAsync();
-
-    //     return Ok();
-    // }
+        return Ok();
+    }
     
     // <summary>Get Habits</summary>
     // <return>Habits</return>
