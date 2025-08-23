@@ -1,7 +1,7 @@
 <div class="main_container">
     <mat-card>
         <mat-card-header>
-            Create Habit
+            <h1>Create a new habit</h1>
         </mat-card-header>
 
         <mat-form-field>
@@ -15,29 +15,45 @@
         </mat-form-field>
 
         <mat-radio-group aria-label="Select a trigger for your habit">
-            <mat-radio-button value="1">Date/Time trigger</mat-radio-button>
-            <mat-radio-button value="2">Habit stacking</mat-radio-button>
+            
+            <div>
+                <mat-radio-button value="0">Date/Time trigger</mat-radio-button>
+                <button mat-icon-button (click)="displayDateTriggerInfo()">
+                    <mat-icon>
+                        info
+                    </mat-icon>
+                </button>
+            </div>   
+
+            <div>
+                <mat-radio-button value="1">Habit stacking</mat-radio-button>
+                <button mat-icon-button (click)="displayHabitStackInfo()">
+                    <mat-icon>
+                        info
+                    </mat-icon>
+                </button>
+            </div>             
+
+            
         </mat-radio-group>
         
         <mat-form-field>
             <mat-label>Choose a start date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="pickerStart">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Choose an end date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="pickerEnd">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
         </mat-form-field>
         
         <p>Select days for your new habit</p>
 
-        <mat-button-toggle-group>
+        <mat-button-toggle-group multiple="">
             <mat-button-toggle value="1">Mon</mat-button-toggle>
             <mat-button-toggle value="2">Tue</mat-button-toggle>
             <mat-button-toggle value="3">Wed</mat-button-toggle>
@@ -47,9 +63,9 @@
             <mat-button-toggle value="3">Sun</mat-button-toggle>
         </mat-button-toggle-group>
 
-
         <button id="create_button" mat-button>
             Create habit
         </button>
+
     </mat-card>
 </div>

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
@@ -11,6 +11,8 @@ import { MatButton } from "@angular/material/button";
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-habit-page',
@@ -24,6 +26,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatIconModule
 ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-habit-page.html',
@@ -36,12 +39,26 @@ export class CreateHabitPage {
     description: new FormControl(''),
     date: new FormControl('')
   });
-}
 
-export class ButtonToggleModeExample {
-  hideMultipleSelectionIndicator = signal(false);
+  private _snackBar = inject(MatSnackBar);
 
-  toggleMultipleSelectionIndicator() {
-    this.hideMultipleSelectionIndicator.update(value => !value);
+  displayDateTriggerInfo(): void {
+    this._snackBar.open("Set a Date when your habit will be triggered. This should be the date on which you want to do it.",
+      'Close',
+    {
+      duration: 10000, // 👈 10s = 10000 ms
+    }
+    );
+  }
+
+  displayHabitStackInfo(): void {
+    this._snackBar.open("Set this habit to trigger once you've completed another habit. This process is called habit stacking.",
+      'Close',
+    {
+      duration: 10000, // 👈 10s = 10000 ms
+    });
   }
 }
+
+
+

@@ -1,6 +1,6 @@
 .main_container {
     margin: auto;
-    width: 50%;
+    width: 80%;
     padding: 10px;
     text-align: center;
     #create_habit{
@@ -26,6 +26,10 @@
     mat-card-header{
         margin: 0 auto;
         padding-bottom: 20px;
+    }
+
+    button {
+        margin: 0 auto;
     }
 
     #create_button {
