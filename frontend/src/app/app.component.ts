@@ -4,8 +4,6 @@ import { HabitComponent } from "./components/habit/habit.component";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HabitComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
