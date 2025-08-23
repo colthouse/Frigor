@@ -17,6 +17,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Habit> Habits { get; private set; } = null!;
+    public DbSet<User> User { get; private set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -28,5 +29,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new HabitConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }
