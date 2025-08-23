@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
@@ -9,5 +9,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   styleUrl: './habit.component.scss'
 })
 export class HabitComponent {
-
+  @Input()
+  placeholder!: string;
 }
