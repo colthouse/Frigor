@@ -46,16 +46,15 @@ templateUrl: './responsibilities-overview.component.html',
   styleUrl: './responsibilities-overview.component.scss',
 })
 export class ResponsibilitiesOverviewComponent {
-  userCtrl = new FormControl('');
-  displayedColumns = ['title', 'owner', 'streak', 'status', 'created', 'tags'];
-  //end vibe
   protected habits: HabitModel[] = [];
   constructor(private habitApi: HabitApi) { }
 
   ngOnInit(): void {
     this.habitApi.getGodparentHabits().subscribe(h => {
-      this.habits = h
+      this.habits = h;
+      console.log(h+"yeet");
     }
+
     )
   } 
 }
