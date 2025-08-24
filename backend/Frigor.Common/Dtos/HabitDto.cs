@@ -6,4 +6,5 @@ public class HabitDto
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public TriggerDto Trigger { get; set; } = null!;
+    public IEnumerable<OccurrenceDto> Occurrences { get; set; }
 }

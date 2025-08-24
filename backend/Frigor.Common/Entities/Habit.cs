@@ -52,4 +52,18 @@ public class Habit
 
         return habit;
     }
+
+    public static HabitDto ToDto(Habit habit)
+    {
+        var habitDto = new HabitDto
+        {
+            Uuid = habit.Uuid,
+            Name = habit.Name,
+            Description = habit.Description,
+            Trigger = Trigger.ToDto(habit.Trigger),
+            Occurrences = habit.Occurrences.Select(o => o.ToDto()).ToList(),
+        };
+
+        return habitDto;
+    }
 }

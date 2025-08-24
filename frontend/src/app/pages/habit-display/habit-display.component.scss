@@ -1,3 +1,29 @@
+@use '@angular/material' as mat;
+
+.colour_elevation {
+    @include mat.elevation(20, $color: rgba(134, 59, 139, 0.4));
+}
+
+.colour_elevation:hover {
+  box-shadow: 0 10px 20px rgba(213, 30, 226, 0.5); /* stronger shadow on hover */
+  transform: translateY(-2px); /* optional lift effect */
+}
+
+div{
+  display:flex;
+  justify-content: center;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+}
+
+  mat-card{
+    max-width: 50%;
+    align-self: center;
+  }
+
 body {
   margin: 10%;
 }
