@@ -8,6 +8,8 @@ import {MatListItem, MatNavList} from '@angular/material/list';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {NgForOf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
+import { MatCard } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-habit-display',
@@ -25,7 +27,9 @@ import {MatIconButton} from '@angular/material/button';
     MatMenuTrigger,
     MatMenuItem,
     NgForOf,
-    MatIconButton
+    MatIconButton,
+    MatCard,
+    RouterLink
   ],
   styleUrl: './habit-display.component.scss'
 })
