@@ -17,6 +17,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { HabitModel } from '../../api/models/habit.model';
 import { HabitApi } from '../../api/services/habit.api';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatListItem, MatNavList } from '@angular/material/list';
 
 @Component({
   selector: 'app-responsibilities-overview',
@@ -35,7 +37,10 @@ import { HabitApi } from '../../api/services/habit.api';
     MatProgressBarModule,
     MatTableModule,
     MatChipsModule,
-    MenuComponent
+    MenuComponent,
+    MatCheckbox,
+    MatNavList,
+    MatListItem
   ],
 templateUrl: './responsibilities-overview.component.html',
   styleUrl: './responsibilities-overview.component.scss',

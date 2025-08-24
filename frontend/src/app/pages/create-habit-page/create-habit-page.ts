@@ -60,7 +60,7 @@ export class CreateHabitPage implements OnInit {
   });
   private _snackBar = inject(MatSnackBar);
 
-  constructor(private userApi: UserApi, private habitApi: HabitApi, private _userHelper: UserHelper, private router: Router) {
+  constructor(private userApi: UserApi, private habitApi: HabitApi, private router: Router) {
   }
 
   protected get triggerIsCycle(): boolean {
@@ -117,7 +117,7 @@ export class CreateHabitPage implements OnInit {
         },
       },
       godparentUserId: this.habitForm.value.godFather!,
-      ownerId: this._userHelper.GetUuid()
+      ownerId: UserHelper.getUuid()
     }
 
     this.habitApi.createHabit(habit).subscribe(() =>

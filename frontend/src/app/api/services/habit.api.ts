@@ -12,7 +12,7 @@ export class HabitApi {
 
   public basePath: string;
 
-  constructor(private _httpClient: HttpClient, private _userHelper: UserHelper) {
+  constructor(private _httpClient: HttpClient) {
     this.basePath = UrlHelper.getApiBase() + 'habit/';
   }
 
@@ -42,6 +42,6 @@ export class HabitApi {
   }
 
   private getUuid(): string{
-    return this._userHelper.GetUuid()
+    return UserHelper.getUuid()
   }
 }

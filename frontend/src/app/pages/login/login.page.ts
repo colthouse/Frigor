@@ -26,7 +26,7 @@ export class LoginPage {
   usernameInput = new FormControl('');
 
 
-  constructor(private _userApi: UserApi, private _userHelper: UserHelper, private router: Router) {}
+  constructor(private _userApi: UserApi, private router: Router) {}
 
   submit() {
     let username: string | null = this.usernameInput.value;
@@ -34,7 +34,7 @@ export class LoginPage {
 
     this._userApi.loadOrCreate(username).subscribe({
         next: (value) => {
-          this._userHelper.SaveUuid(value.uuid);
+          UserHelper.saveUuid(value.uuid);
           this.router.navigate(['/habit-display']);
         }
       }

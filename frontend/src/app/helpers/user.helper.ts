@@ -1,8 +1,8 @@
 export class UserHelper{
-    public SaveUuid(id:string):void{
+    public static saveUuid(id:string):void{
         localStorage.setItem("uuid",id)
     }
-    public GetUuid():string{
+    public static getUuid():string{
         return localStorage.getItem("uuid") ?? "";
     }
 }

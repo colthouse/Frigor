@@ -38,4 +38,16 @@ export class HabitDisplayComponent implements OnInit {
     }
     )
   }
+    onDelete(uuid: string) {
+    this.habitApi.deleteHabit().subscribe(() =>
+      this.habitApi.getHabits().subscribe(h => {
+          this.habits = h
+        }
+      )
+    );
+  }
+
+  onAchieved(uuid: string, checked: boolean) {
+    this.habitApi.habitAchieved(checked).subscribe(h => {})
+  }
 }
