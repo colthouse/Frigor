@@ -1,7 +1,7 @@
 <mat-nav-list class="custom-list">
   <mat-list-item *ngFor="let habit of habits" class="custom-list-item">
     <div class="item-content">
-      <mat-checkbox #checkbox (click)="onAchieved(habit.uuid, checkbox.checked)"></mat-checkbox>
+      <mat-checkbox #checkbox [checked]="isAchieved(habit)" (click)="onAchieved(habit.uuid, checkbox.checked)"></mat-checkbox>
       <span class="item-text">{{ habit.name }}</span>
       <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="menu-button" mat-icon-button>
         <mat-icon>more_vert</mat-icon>

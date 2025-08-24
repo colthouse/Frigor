@@ -25,4 +25,35 @@ public abstract class Trigger
         }
         return HabitTrigger.FromDto(dto);
     }
+
+    public static TriggerDto ToDto(Trigger trigger)
+    {
+        if (trigger.Type == TriggerType.Habit)
+        {
+            var habitTrigger = (HabitTrigger)trigger;
+            
+            return new TriggerDto
+            {
+                Uuid = trigger.Uuid,
+                Type = trigger.Type,
+                Habits =  habitTrigger.Habits.Select(Habit.ToDto)
+            };
+        }
+
+        if (trigger.Type == TriggerType.Cycle)
+        {
+            var cycleTrigger = (CycleTrigger)trigger;
+            
+            return new TriggerDto
+            {
+                Uuid = trigger.Uuid,
+                Type = trigger.Type,
+                StartDate = cycleTrigger.StartDate,
+                EndDate = cycleTrigger.EndDate,
+                Weekdays = cycleTrigger.Weekdays,
+            };
+        }
+        
+        throw new Exception("Unknown trigger type");
+    }
 }

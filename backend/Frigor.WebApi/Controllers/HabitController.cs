@@ -16,9 +16,12 @@ public class HabitController(AppDbContext context): ControllerBase
     [HttpGet("{uuid:guid}")]
     public async Task<IActionResult> GetHabits(Guid uuid)
     {
-        var habits = await context.Habits.Where(h => h.OwnerUuid == uuid).ToListAsync();
+        var habits = await context.Habits
+            .Include(h => h.Occurrences)
+            .Include(h => h.Trigger)
+            .Where(h => h.OwnerUuid == uuid).ToListAsync();
 
-        return Ok(habits);
+        return Ok(habits.Select(Habit.ToDto));
     }
 
     [HttpPost]
@@ -73,19 +76,35 @@ public class HabitController(AppDbContext context): ControllerBase
         return Ok();
     }
     
-    // [HttpGet("{uuid:guid}/{achieved:bool}")]
-    // public async Task<IActionResult> AchieveHabit(Guid uuid,  bool achieved)
-    // {
-    //     var habit = await context.Habits
-    //         .Include(h => h.Trigger)
-    //         .ThenInclude(t => t.Occurrence)
-    //         .Include(h => h.Trigger)
-    //         .ThenInclude(t => t.Cycle)
-    //         .FirstAsync(habit => habit.Uuid == uuid);
+    [HttpGet("{uuid:guid}/{achieved:bool}")]
+    public async Task<IActionResult> AchieveHabit(Guid uuid,  bool achieved)
+    {
+        var habit = await context.Habits
+            .Include(h => h.Occurrences)
+            .FirstAsync(habit => habit.Uuid== uuid);
 
-    //     habit.Trigger.Occurrence.IsAchieved = achieved;
-    //     await context.SaveChangesAsync();
+        var occurrence = habit.Occurrences.FirstOrDefault(o => o.Date.Date == DateTime.Now.Date);
+        if (occurrence != null)
+        {
+            occurrence.IsAchieved = achieved;
+        }
+        else
+        {
+            var con = new Occurrence
+            {
+                Habit = habit,
+                Date = DateTimeOffset.Now.UtcDateTime,
+                IsAchieved = achieved
+            };
 
-    //     return Ok();
-    // }
+            context.Occurrence.Add(con);
+            var occurrencesList = habit.Occurrences.ToList() ;
+            occurrencesList.Add(con);
+
+            habit.Occurrences = occurrencesList;
+        }
+        await context.SaveChangesAsync();
+
+        return Ok();
+    }
 }

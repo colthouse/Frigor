@@ -51,4 +51,21 @@ export class HabitDisplayComponent implements OnInit {
   onAchieved(uuid: string, checked: boolean) {
     this.habitApi.habitAchieved(uuid, checked).subscribe(h => {})
   }
+
+  isAchieved(habit: HabitModel):boolean {
+    let occ = habit.occurrences.find(occurrence => {
+      const now = new Date();
+      const occDate =new Date(occurrence.date);
+      return (
+        occDate.getFullYear() === now.getFullYear() &&
+        occDate.getMonth() === now.getMonth() &&
+        occDate.getDate() === now.getDate()
+      );
+    })
+
+    if (occ){
+      return occ.isAchieved
+    }
+    return false
+  }
 }
