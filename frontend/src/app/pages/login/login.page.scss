@@ -1,3 +1,14 @@
+@use '@angular/material' as mat;
+
+.colour_elevation {
+    @include mat.elevation(20, $color: rgba(134, 59, 139, 0.4));
+}
+
+.colour_elevation:hover {
+  box-shadow: 0 10px 20px rgba(213, 30, 226, 0.5); /* stronger shadow on hover */
+  transform: translateY(-2px); /* optional lift effect */
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -9,7 +20,10 @@ main {
     flex-direction: column;
 
     button {
-      margin-left: auto;
+      align-self: center;
     }
+  }
+  mat-card {
+    padding: 50px;
   }
 }

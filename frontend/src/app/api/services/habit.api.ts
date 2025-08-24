@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UrlHelper } from '../../helpers/url.helper';
 import { UserHelper } from '../../helpers/user.helper';
 import { HabitModel } from '../models/habit.model';
+import {HabitCreationModel} from '../models/habit-creation.model';
 
 @Injectable({
   providedIn: 'root'

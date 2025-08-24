@@ -1,13 +1,15 @@
 using Frigor.Common.Dtos;
-using System.Runtime.CompilerServices;
 
 namespace Frigor.Common.Entities;
 
 public class Occurrence
 {
-    public Occurrence()
-    {
-    }
+    public Guid Uuid { get; set; }
+    public bool IsAchieved { get; set; }
+    public DateTime Date { get; set; }
+
+    public Habit Habit { get; set; } = null!;
+    public Guid HabitUuid { get; set; }
 
     public static Occurrence FromDto(OccurrenceDto dtoTriggerOccurrence)
     {
@@ -20,12 +22,6 @@ public class Occurrence
 
     public OccurrenceDto ToDto()
     {
-        return new OccurrenceDto(Date,IsAchieved);
+        return new OccurrenceDto() { IsAchieved = IsAchieved, Date = Date };
     }
-
-    public Guid Uuid { get; set; }
-
-    public bool IsAchieved { get; set; }
-
-    public DateTime Date { get; set; }
 }

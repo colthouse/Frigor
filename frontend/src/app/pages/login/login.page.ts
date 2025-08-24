@@ -6,6 +6,7 @@ import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import { MatCard } from '@angular/material/card';
 import { UserHelper } from '../../helpers/user.helper';
 
 @Component({
@@ -18,7 +19,8 @@ import { UserHelper } from '../../helpers/user.helper';
     ReactiveFormsModule,
     MatIcon,
     MatButton,
-    MatInput
+    MatInput,
+    MatCard
   ],
   styleUrl: './login.page.scss'
 })
@@ -35,7 +37,7 @@ export class LoginPage {
     this._userApi.loadOrCreate(username).subscribe({
         next: (value) => {
           UserHelper.saveUuid(value.uuid);
-          this.router.navigate(['/habit-display']);
+          this.router.navigate(['/habit-display']).then(r => console.log(r));
         }
       }
       )

@@ -1,10 +1,8 @@
-import { TriggerModel } from "./trigger.model";
+import {UserModel} from './user.model';
+import {HabitInterface} from './habit-interface.model';
 
-export interface HabitModel {
+export interface HabitModel extends HabitInterface {
+    owner: UserModel;
+    godParent: UserModel;
     uuid: string;
-    name: string
-    description: string;
-    trigger: TriggerModel;
-    godparentUserId: string | null; 
-    ownerId: string;
 }

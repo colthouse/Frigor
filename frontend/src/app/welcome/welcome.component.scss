@@ -1,85 +1,104 @@
-/* General Layout */
+@use '@angular/material' as mat;
+
+.colour_elevation {
+    @include mat.elevation(20, $color: rgba(134, 59, 139, 0.4));
+}
+
+.colour_elevation:hover {
+  box-shadow: 0 10px 20px rgba(213, 30, 226, 0.5); /* stronger shadow on hover */
+  transform: translateY(-2px); /* optional lift effect */
+}
+
 mat-card {
-  margin: 30px auto;
-  padding: 25px;
-  max-width: 800px;
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#welcome_msg {
+    font-size: 60px;
 }
 
 mat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
 /* Icons */
 mat-icon {
-  margin: 30px auto;
-  display: flex;
-  justify-content: center;
-  font-size: 60px;
-  height: 60px;
-  width: 60px;
-  color: var(--mat-primary, #3f51b5);
-  transition: transform 0.4s ease, color 0.4s ease;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+    height: 60px;
+    width: 60px;
+    color: var(--mat-primary, #3f51b5);
+    transition: transform 0.4s ease, color 0.4s ease;
 }
 
 mat-icon:hover {
-  transform: scale(1.2) rotate(-5deg);
-  color: var(--mat-accent, #ff4081);
+    transform: scale(1.2) rotate(-5deg);
+    color: var(--mat-accent, #ff4081);
 }
 
 /* Typography */
 h1 {
-  padding: 10px;
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
+    padding: 10px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .h2_center, h2 {
-  padding: 10px;
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 h3 {
-  padding: 10px;
-  font-size: 1.3rem;
-  font-weight: 500;
-  text-align: center;
-  color: #555;
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    color: #555;
 }
 
 p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  padding: 10px 15px;
-  text-align: center;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    padding: 10px 15px;
+    text-align: center;
 }
 
 /* Stepper Flow */
 .steps-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 /* Animations */
 @keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 mat-card {
-  animation: fadeUp 0.8s ease forwards;
-  opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
 }
 
-mat-card:nth-child(1) { animation-delay: 0.1s; }
-mat-card:nth-child(2) { animation-delay: 0.3s; }
-mat-card:nth-child(3) { animation-delay: 0.5s; }
-mat-card:nth-child(4) { animation-delay: 0.7s; }
+#loginbutton {
+    align-self: center;
+    background-color: rgba(134, 59, 139, 0.4);
+    font-size: large;
+}
+mat-card:nth-child(1) { animation-delay: 0.15s; }
+mat-card:nth-child(2) { animation-delay: 0.2s; }
+mat-card:nth-child(3) { animation-delay: 0.4s; }
+mat-card:nth-child(4) { animation-delay: 0.5s; }

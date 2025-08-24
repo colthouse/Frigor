@@ -4,7 +4,7 @@ $brand-font-family: "Kode Mono", monospace;
 // https://catppuccin.com/palette
 // Macchiato
 .dark-theme {
-  --background: #24273a;
+  --background: #2427ff3a;
   --warn: #ed8796;
   --success: #a6da95;
   --primary: #8aadf4;
@@ -12,4 +12,5 @@ $brand-font-family: "Kode Mono", monospace;
   --text: #cad3f5;
   --font-family: #{$font-family};
   --brand-font-family: #{$brand-font-family};
+  --mat-card-background: #292929;
 }

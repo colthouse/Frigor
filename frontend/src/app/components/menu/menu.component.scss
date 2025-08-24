@@ -1,3 +1,6 @@
+mat-sidenav-container {
+  height: 100vh;
+
 mat-toolbar {
   display: flex;
   justify-content: flex-start;
@@ -8,4 +11,40 @@ mat-toolbar {
 
 .spacer {
   flex: 1 1 auto;
+}
+/* Hide burger button on desktop, show on mobile */
+.burger-button {
+  display: none;
+}
+
+.nav-links.desktop-nav {
+  display: flex;
+}
+
+mat-sidenav nav {
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  padding: 0;
+  margin: 0;
+}
+
+mat-sidenav nav a {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .burger-button {
+    display: inline-flex;
+  }
+
+  .nav-links.desktop-nav {
+    display: none;
+  }
+}
 }
