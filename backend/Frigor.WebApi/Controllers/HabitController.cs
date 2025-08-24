@@ -30,7 +30,11 @@ public class HabitController(AppDbContext context): ControllerBase
     [HttpGet("godparent/{uuid:guid}")]
     public async Task<IActionResult> GetGodparentHabits(Guid uuid)
     {
-        var habits = await context.Habits.Include(h=>h.Owner).Where(h => h.GodparentUuid == uuid).ToListAsync();
+        var habits = await
+            context.Habits
+            .Include(h=>h.Owner)
+            .Include(h => h.Occurrences)
+            .Where(h => h.GodparentUuid == uuid).ToListAsync();
 
         return Ok(habits);
     }

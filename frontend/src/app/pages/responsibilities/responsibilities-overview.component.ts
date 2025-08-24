@@ -19,6 +19,7 @@ import { HabitModel } from '../../api/models/habit.model';
 import { HabitApi } from '../../api/services/habit.api';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatListItem, MatNavList } from '@angular/material/list';
+import { OccurrenceModel } from '../../api/models/occurrence.model';
 
 @Component({
   selector: 'app-responsibilities-overview',
@@ -47,12 +48,12 @@ templateUrl: './responsibilities-overview.component.html',
 })
 export class ResponsibilitiesOverviewComponent {
   protected habits: HabitModel[] = [];
+
   constructor(private habitApi: HabitApi) { }
 
   ngOnInit(): void {
     this.habitApi.getGodparentHabits().subscribe(h => {
       this.habits = h;
-      console.log(h+"yeet");
     }
 
     )

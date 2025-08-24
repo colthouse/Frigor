@@ -1,13 +1,15 @@
 <mat-toolbar color="primary" class="mat-elevation-z2">
-  <span>Godparents Overview</span>
+  <span>Godparents Habits</span>
   <span class="spacer"></span>
 </mat-toolbar>
 
 <mat-nav-list class="custom-list">
   <mat-list-item *ngFor="let habit of habits" class="custom-list-item">
     <div class="item-content">
-      <span class="item-text">{{ habit.name }}</span>
-      <span class="item-text">{{ habit.owner.name }}</span>
+      <span class="item-text">Habit: {{ habit.name }}</span>
+      <span class="item-text">Owner: {{ habit.owner.name }}</span>
+      <span class="item-text">Last Occurrence: {{ habit.occurrences.at(-1)?.date }}</span>
+      <span class="item-text">Achieved: {{ habit.occurrences.at(-1)?.isAchieved }}</span>
     </div>
   </mat-list-item>
 </mat-nav-list>
