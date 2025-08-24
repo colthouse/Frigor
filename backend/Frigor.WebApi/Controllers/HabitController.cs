@@ -48,40 +48,6 @@ public class HabitController(AppDbContext context): ControllerBase
 
         return Ok();
     }
-    
-    // <summary>Get Habits</summary>
-    // <return>Habits</return>
-    // <response code="200">Successful</response>
-    // [HttpGet("{uuid:guid}")]
-    // public async Task<IActionResult> GetHabits(Guid uuid)
-    // {
-    //     var user = await context.User
-    //         .FirstOrDefaultAsync(u => u.Uuid == uuid);
-    //     if (user == null) return NotFound();
-
-    //     var habits = await context.Habits
-    //         .Include(h => h.Trigger)
-    //         .ThenInclude(t => t.Occurrence)
-    //         .Where(h => user.Habits.Contains(h.Uuid)).ToListAsync();
-
-    //     return Ok(habits);
-    // }
-
-    // [HttpPost("{uuid:guid}")]
-    // public async Task<IActionResult> CreateHabit(Guid uuid, [FromBody] HabitCreationDto habitDto)
-    // {
-    //     Habit habit = Habit.FromDto(habitDto);
-    //     context.Habits.Add(habit);
-    //     User? user = await context.User.FirstOrDefaultAsync(u => u.Uuid == uuid);
-
-    //     if (user == null)
-    //         return NotFound();
-
-    //     user.Habits.Add(habit.Uuid);
-    //     await context.SaveChangesAsync();
-
-    //     return Ok();
-    // }
 
     [HttpDelete("{uuid:guid}")]
     public async Task<IActionResult> DeleteHabit(Guid uuid)
